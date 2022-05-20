@@ -32,18 +32,23 @@ def create_post(request):
 def forum_post_by_id(request, pk):
     post = get_object_or_404(Forum_Post,pk=pk)
     if request.method == 'GET':
-        serializer = ForumPostSerializer(post, many= True)
-        return Response(serializer.data, status = status.HTTP_200_OK)
+        if request.user.id == post.user.id:
+            serializer = ForumPostSerializer(post, many= True)
+            return Response(serializer.data, status = status.HTTP_200_OK)
     elif request.method == "PUT":
-        serializer = ForumPostSerializer(post, data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(user = request.user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        if request.user.id == post.user.id:
+            serializer = ForumPostSerializer(post, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(user = request.user)
+                return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PATCH':
-        serializer = ForumPostSerializer(post, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if request.user.id == post.user.id:
+            serializer = ForumPostSerializer(post, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'DELETE':
-        post.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user.id == post.user.id:
+            serializer = ForumPostSerializer(post,many=False)
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
