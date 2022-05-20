@@ -15,6 +15,7 @@ def get_all_comments(request):
         comments = Forum_Comment.objects.all()
         serializer = ForumCommentSerializer(comments, many=True)
         return Response(serializer.data, status = status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -24,6 +25,7 @@ def create_comment(request):
         if serializer.is_valid(raise_exception=True):
             serializer.save(user = request.user)
             return Response(serializer.data,status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
 @permission_classes([IsAuthenticated])
@@ -42,7 +44,7 @@ def forum_comment_by_id(request, pk):
     elif request.method == 'PATCH':
         serializer = ForumCommentSerializer(comment, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(user = request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'DELETE':
         comment.delete()

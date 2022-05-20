@@ -4,4 +4,4 @@ from .models import Forum_Post
 class ForumPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forum_Post
-        fields = ['id', 'user', 'topic', 'content', 'date', 'user_id']
+        fields = ['id', 'user', 'topic', 'description', 'date']

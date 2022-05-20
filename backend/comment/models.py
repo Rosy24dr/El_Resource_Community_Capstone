@@ -8,5 +8,6 @@ class Forum_Comment(models.Model):
     content = models.CharField(max_length=600)
     date = models.DateTimeField(auto_now=True, null=True)
     
-    
+class Admin(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
 
