@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Event
 
-class ForumPostSerializer(serializers.ModelSerializer):
+class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'start_date', 'end_date', 'title', 'content', 'address']
