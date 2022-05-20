@@ -20,12 +20,13 @@ def get_all_replies(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_reply(request):
+    # reply = get_object_or_404(Forum_Reply)
     if request.method == "POST":
-        serializer = ForumReplySerializer(data = request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(user = request.user)
-            return Response(serializer.data,status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # if request.user.id == reply.user.id:
+            serializer = ForumReplySerializer(data = request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(user = request.user)
+                return Response(serializer.data,status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
 @permission_classes([IsAuthenticated])
@@ -33,19 +34,24 @@ def forum_reply_by_id(request, pk):
     forumcomment = get_object_or_404(Forum_Comment,pk=pk)
     reply = get_object_or_404(Forum_Reply,pk=pk)
     if request.method == 'GET':
-        forumreply = Forum_Reply.objects.filter(forumcomment_id = forumcomment.id)
-        serializer = ForumReplySerializer(forumreply, many= True)
-        return Response(serializer.data, status = status.HTTP_200_OK)
+        if request.user.id == reply.user.id:
+            forumreply = Forum_Reply.objects.filter(forumcomment_id = forumcomment.id)
+            serializer = ForumReplySerializer(forumreply, many= True)
+            return Response(serializer.data, status = status.HTTP_200_OK)
     elif request.method == "PUT":
-        serializer = ForumReplySerializer(reply, data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(user = request.user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        if request.user.id == reply.user.id:
+            serializer = ForumReplySerializer(reply, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(user = request.user)
+                return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PATCH':
-        serializer = ForumReplySerializer(reply, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if request.user.id == reply.user.id:
+            serializer = ForumReplySerializer(reply, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'DELETE':
-        reply.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user.id == reply.user.id:
+            serializer = ForumReplySerializer(reply,many=False)
+            reply.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
