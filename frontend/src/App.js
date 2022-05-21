@@ -10,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import Map from "./components/Map/Map"
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
@@ -17,6 +18,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 function App() {
   return (
     <div>
+      <Map/>
       <Navbar />
       <Routes>
         <Route
