@@ -11,14 +11,17 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import Forum from "./components/Forum/Forum"
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import CommentForm from "./components/CommentForm/CommentForm";
 
 function App() {
   return (
     <div>
-      <Comment/>
+
+      <Forum/>
       <Navbar />
       <Routes>
         <Route

@@ -1,41 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import useAuth from '../../hooks/useAuth';
-import axios from "axios";
+import React from "react";
 
-const Comment = () => {
-    const [user,token] = useAuth();
-    const [comment,setComment] = useState([]);
-
-    useEffect(() => {
-        fetchComments();
-       }, []);
-     
-    const fetchComments = async () => {
-       try{
-        let result = await axios.get("http://127.0.0.1:8000/api/forumcomments/", {
-         headers: {
-           Authorization: "Bearer " + token,
-         },
-       });
-       setComment(result.data);
-        }catch (error) {
-            console.log(error.message);
+const Comment = ({comment}, {forumId}) => {
+  return (
+    <div>
+      {comment.map((c) => {
+        if (c.forumpost_id === forumId) {
+         
+          return (
+            <div>
+              <div key={c.id}>{c.content}</div>
+              <div>{c.date}</div>
+            </div> 
+          );
         }
-     };
-     console.log(comment);
+      })}
+    </div>
+  );
+};
 
-     return ( 
-        <div>
-             {comment && comment.map((c) => (
-        < div >
-          <div >
-            <div>{c.content}</div>
-            <div>{c.date}</div>
-          </div>
-        </div>
-             ))}
-      </div>
-     );
-}
- 
 export default Comment;
