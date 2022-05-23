@@ -24,7 +24,7 @@ const CommentForm = (props) => {
         placeholder="Enter text"
         onChange={(event) => setContent(event.target.value)}
       />
-      <button className="search-button">Add Comment</button>{" "}
+      <button>Add Comment</button>
     </form>
   );
 };

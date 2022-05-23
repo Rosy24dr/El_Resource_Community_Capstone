@@ -1,7 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Comment from "./components/Comment/Comment";
+import Map from "./components/Map/Map";
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -20,8 +20,8 @@ import CommentForm from "./components/CommentForm/CommentForm";
 function App() {
   return (
     <div>
-
-      <Forum/>
+      {/* <Map/> */}
+      <Forum />
       <Navbar />
       <Routes>
         <Route

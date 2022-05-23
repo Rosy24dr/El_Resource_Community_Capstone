@@ -20,9 +20,7 @@ def get_all_comments(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_comment(request):
-    # reply = get_object_or_404(Forum_Comment)
     if request.method == "POST":
-        #  if request.user.id == reply.user.id:
             serializer = ForumCommentSerializer(data = request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save(user = request.user)
@@ -33,29 +31,24 @@ def create_comment(request):
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def forum_comment_by_id(request, pk):
-    forum = get_object_or_404(Forum_Post,pk=pk)
-    comment = get_object_or_404(Forum_Comment,pk=pk)
+    forumpost = get_object_or_404(Forum_Post,pk=pk)
     if request.method == 'GET':
-        if request.user.id == comment.user.id:
-            forumcomment = Forum_Comment.objects.filter(forum_id = forum.id)
+            forumcomment = Forum_Comment.objects.filter(forumpost_id = forumpost.id)
             serializer = ForumCommentSerializer(forumcomment, many= True)
             return Response(serializer.data, status = status.HTTP_200_OK)
     elif request.method == "PUT":
-        if request.user.id == comment.user.id:
-            serializer = ForumCommentSerializer(comment, data=request.data)
+            serializer = ForumCommentSerializer(forumpost, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save(user = request.user)
                 return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PATCH':
-        if request.user.id == comment.user.id:
-            serializer = ForumCommentSerializer(comment, data=request.data, partial=True)
+            serializer = ForumCommentSerializer(forumpost, data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save(user = request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'DELETE':
-        if request.user.id == comment.user.id:
-            serializer = ForumCommentSerializer(comment,many=False)
-            comment.delete()
+            serializer = ForumCommentSerializer(forumpost, many=False)
+            forumpost .delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
 
       
