@@ -28,7 +28,7 @@ const Comment = (props) => {
   const addComment = async (newComment) => {
     try {
       await axios.post(
-        `http://127.0.0.1:8000/api/forumcomments/create/`,
+        "http://127.0.0.1:8000/api/forumcomments/create/",
         newComment,
         {
           headers: {
@@ -54,7 +54,7 @@ const Comment = (props) => {
           );
         }
       )}
-      <CommentForm addComment= {addComment} user={props.user}/>
+      <CommentForm addComment= {addComment} user={props.user} forumpostId={props.forumpostId} />
     </div>
     
   );

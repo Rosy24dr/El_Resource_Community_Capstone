@@ -25,7 +25,7 @@ def create_comment(request):
             if serializer.is_valid(raise_exception=True):
                 serializer.save(user = request.user)
                 return Response(serializer.data,status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
 
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
