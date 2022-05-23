@@ -9,4 +9,4 @@ class Forum_Post(models.Model):
     topic= models.CharField(max_length=300)
     description = models.CharField(max_length=1000,blank=True)
     category = models.CharField(max_length=1000,blank=True)
-    date = models.DateTimeField(auto_now=True, null=True)
+    date = models.DateField(null=True)

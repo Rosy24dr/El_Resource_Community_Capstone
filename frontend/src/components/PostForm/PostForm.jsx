@@ -4,7 +4,7 @@ const PostForm = (props) => {
   const [topic, setTopic] = useState(" ");
   const [description, setDescription] = useState(" ");
   const [category, setCategory] = useState(" ");
-  const [date] = useState(new Date().toLocaleDateString());
+  const [date, setDate] = useState("");
 
   function handlesubmit(event) {
     event.preventDefault();
@@ -15,10 +15,13 @@ const PostForm = (props) => {
       category: category,
       date: date,
     };
-    console.log(newPost);
     props.addpost(newPost);
+    setTopic(" ");
+    setDescription(" ");
+    setCategory(" ");
+    setDate(" ");
   }
-  return(
+  return (
     <form onSubmit={handlesubmit}>
       <div>
         <label for="topic">Topic</label>
@@ -39,12 +42,18 @@ const PostForm = (props) => {
         />
       </div>
       <div>
-      <label for="category">Category</label>
+        <label for="category">Category</label>
         <input
           type="text"
           value={category}
           placeholder="Enter text"
           onChange={(event) => setCategory(event.target.value)}
+        />
+        <input
+          type="date"
+          value={date}
+          placeholder="Enter date"
+          onChange={(event) => setDate(event.target.value)}
         />
         <button className="search-button">Add Post</button>{" "}
       </div>

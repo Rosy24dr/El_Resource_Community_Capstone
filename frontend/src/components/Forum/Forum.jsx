@@ -51,9 +51,10 @@ const Forum = (props) => {
                     forumpostId={p.id}
                   />
 
-                  <PostForm addpost={addPost} />
+                  
                 </div>
               ))}
+              <PostForm addpost={addPost} user={user} />
           </div>
         </div>
       </div>

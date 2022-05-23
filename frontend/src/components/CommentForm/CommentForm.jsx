@@ -14,6 +14,7 @@ const CommentForm = (props) => {
     };
     props.addComment(newComment);
     setContent(' ');
+    setDate(' ');
   }
   return (
     <form onSubmit={handlesubmit}>
