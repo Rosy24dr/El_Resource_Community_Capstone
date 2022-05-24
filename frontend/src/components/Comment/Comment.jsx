@@ -50,7 +50,7 @@ const Comment = (props) => {
             <div>
               <div key={c.id}>{c.content}</div>
               <div>{c.date}</div>
-              <Reply forumcommentId={c.id} comments={comments}/>
+              <Reply forumcommentId={c.id} comments={comments} user={props.user}/>
             </div> 
           );
         }

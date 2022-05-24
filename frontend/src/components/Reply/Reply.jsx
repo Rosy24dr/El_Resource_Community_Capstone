@@ -2,28 +2,34 @@ import React, { useState, useEffect } from "react";
 import ReplyForm from "../ReplyForm/ReplyForm";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import Popup from "../Popup/Popup";
 
 const Reply = (props) => {
   const [user, token] = useAuth();
   const [replies, setReplies] = useState([]);
-  const [updateReplies, setUpdateReplies] = useState([]);
-  const [content, setContent] = useState(" ");
-  const [date, setDate] = useState("");
+  const [contentToUpdate,setContentToUpdate]=useState('')
+  const [dateToUpdate,setDateToupdate] = useState('')
+  const [idToUpdate,setIdToupdate] = useState()
+  const [buttonPopup, setButtonPopup] = useState(false)
+
 
   useEffect(() => {
     getReplies();
   }, []);
 
-function handleUpdate(event) {
+    function handleUpdate(event) {
     event.preventDefault();
     let reply = {
       user: props.user.id,
       forumcomment_id: props.forumcommentId,
-      content: content,
-      date: date,
+      content: contentToUpdate,
+      date: dateToUpdate,
     };
-    updateReply(reply);
+    console.log(reply);
+    updateReply(reply)
   }
+
+  
   const getReplies = async () => {
     try {
       let result = await axios.get(
@@ -58,31 +64,64 @@ function handleUpdate(event) {
     }
   };
 
-  const updateReply = async () => {
+   const updateReply = async (updatedReply) => {
     try {
       let result = await axios.put(
-        `http://127.0.0.1:8000/api/forumreply/${props.forumcommentId}/`,
+        `http://127.0.0.1:8000/api/forumreply/${idToUpdate}/`,updatedReply,
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
       );
-      setUpdateReplies(result.data);
+      console.log(updatedReply)
+      getReplies();
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  
+    const setReplyToUpdate = (reply) =>{
+      setIdToupdate(reply.id)
+      setContentToUpdate(reply.content)
+      setDateToupdate(reply.date)
+  }
 
   return (
     <div>
+      <main>
+        <button onClick={() => setButtonPopup(true)}>Edit Reply</button>
+      </main>
+      
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}> 
+      <form onSubmit={handleUpdate}>
+        <div>
+          <label for="content"></label>
+          <input
+            type="text"
+            defaultValue={contentToUpdate}
+            placeholder="Enter text"
+            onChange={(event) => setContentToUpdate(event.target.value)}
+          />
+        </div>
+        <div>
+          <label for="Date">Date</label>
+          <input
+            type="Date"
+            defaultValue={dateToUpdate}
+            placeholder="Enter date"
+            onChange={(event) => setDateToupdate(event.target.value)}
+          />
+        </div>
+        <button className="search-button">Edit Reply</button>
+      </form>
+      </Popup>
       {replies.map((r) => {
         return (
           <div>
             <div key={r.id}>{r.content}</div>
             <div>{r.date}</div>
+            <button onClick={()=>setReplyToUpdate(r)}>Edit Reply</button>
           </div>
         );
       })}
@@ -90,10 +129,8 @@ function handleUpdate(event) {
       <ReplyForm
         addReply={addReply}
         user={user}
-        forum
-        commentId={props.forumcommentId}
+        forumcommentId={props.forumcommentId}
       />
-      <button onClick={handleUpdate}>Update Reply</button>
     </div>
   );
 };

@@ -1,1 +1,1 @@
-// export const KEY = 'AIzaSyB8yppsEu58bXqkpj8mU1F9Jtyi41fBLD0'
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY = 'AIzaSyB8yppsEu58bXqkpj8mU1F9Jtyi41fBLD0'

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import Popup from "../Popup/Popup";
 
 const CommentForm = (props) => {
-  const [content, setContent] = useState(' ');
-  const [date, setDate] = useState('')
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
+  const [buttonPopup, setButtonPopup] = useState(false);
 
-  function handlesubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     let newComment = {
       user: props.user.id,
@@ -13,25 +15,31 @@ const CommentForm = (props) => {
       date: date,
     };
     props.addComment(newComment);
-    setContent(' ');
+    setContent(" ");
   }
+
   return (
-    <form onSubmit={handlesubmit}>
-     
-      <input
-        type="text"
-        value={content}
-        placeholder="Enter text"
-        onChange={(event) => setContent(event.target.value)}
-      />
-      <input
-      type="date"
-      value={date}
-      placeholder="Enter date"
-      onChange={(event) => setDate(event.target.value)}
-    />
-      <button>Add Comment</button>
-    </form>
+    <div>
+      <main>
+        <button onClick={() => setButtonPopup(true)}>Add Comment</button>
+      </main>
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={content}
+            placeholder="Enter text"
+            onChange={(event) => setContent(event.target.value)}
+          />
+          <input
+            type="date"
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
+          />
+          <button>Add comment</button>
+        </form>
+      </Popup>
+    </div>
   );
 };
 

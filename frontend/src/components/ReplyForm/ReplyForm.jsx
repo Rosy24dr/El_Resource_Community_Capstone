@@ -1,9 +1,11 @@
 
 import React, { useState } from "react";
+import Popup from '../Popup/Popup'
 
 const PostForm = (props) => {
   const [content, setContent] = useState(" ");
   const [date, setDate] = useState("");
+  const [buttonPopup, setButtonPopup] = useState(false)
 
 
   function handlesubmit(event) {
@@ -20,7 +22,13 @@ const PostForm = (props) => {
   }
 
   return (
-    <form onSubmit={handlesubmit}>
+    <div>
+      <main>
+        <button onClick={() => setButtonPopup(true)}>Add Reply</button>
+
+      </main>
+    <Popup trigger={buttonPopup} setTrigger={setButtonPopup}> 
+      <form onSubmit={handlesubmit}>
       <div>
         <label for="content"></label>
         <input
@@ -39,10 +47,11 @@ const PostForm = (props) => {
           onChange={(event) => setDate(event.target.value)}
         />
       </div>
-
-        <button className="search-button">Add Reply</button>{" "}
-        
+      <button>Add Reply</button>
     </form>
+    </Popup>
+   </div> 
+    
   );
 };
 

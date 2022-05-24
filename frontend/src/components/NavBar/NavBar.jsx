@@ -19,6 +19,9 @@ const Navbar = () => {
           <Link  to="/forum">
                Forum
           </Link>
+          <Link  to="/dashboard">
+               Dashboard
+          </Link>
         </li>
         <li>
           {user ? (
