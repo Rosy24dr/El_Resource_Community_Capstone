@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import Comment from "../Comment/Comment";
-import PostForm from "../PostForm/PostForm"
+import PostForm from "../PostForm/PostForm"; 
+
+
 
 const Forum = (props) => {
   const [user, token] = useAuth();
@@ -50,8 +52,6 @@ const Forum = (props) => {
                     user={user}
                     forumpostId={p.id}
                   />
-
-                  
                 </div>
               ))}
               <PostForm addpost={addPost} user={user} />

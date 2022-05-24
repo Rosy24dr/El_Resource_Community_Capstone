@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import CommentForm from "../CommentForm/CommentForm";
+import Reply from "../Reply/Reply"
 
 const Comment = (props) => {
   const [user, token] = useAuth();
@@ -50,6 +51,7 @@ const Comment = (props) => {
             <div>
               <div key={c.id}>{c.content}</div>
               <div>{c.date}</div>
+              <Reply forumcommentId={c.id}/>
             </div> 
           );
         }

@@ -1,7 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Map from "./components/Map/Map";
+// import Map from "./components/Map/Map";
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
