@@ -24,7 +24,6 @@ const Comment = (props) => {
       console.log(error.message);
     }
   };
-  console.log(comments);
 
   const addComment = async (newComment) => {
     try {
@@ -51,7 +50,7 @@ const Comment = (props) => {
             <div>
               <div key={c.id}>{c.content}</div>
               <div>{c.date}</div>
-              <Reply forumcommentId={c.id}/>
+              <Reply forumcommentId={c.id} comments={comments}/>
             </div> 
           );
         }

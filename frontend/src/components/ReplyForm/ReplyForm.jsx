@@ -16,8 +16,9 @@ const PostForm = (props) => {
     };
     props.addReply(newReply);
     setContent(" ");
-    setDate(" ");
+
   }
+
   return (
     <form onSubmit={handlesubmit}>
       <div>
@@ -40,6 +41,7 @@ const PostForm = (props) => {
       </div>
 
         <button className="search-button">Add Reply</button>{" "}
+        
     </form>
   );
 };

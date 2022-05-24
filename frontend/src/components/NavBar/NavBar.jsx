@@ -16,6 +16,11 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
+          <Link  to="/forum">
+               Forum
+          </Link>
+        </li>
+        <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (

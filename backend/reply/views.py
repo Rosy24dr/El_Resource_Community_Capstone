@@ -31,7 +31,7 @@ def forum_reply_by_id(request, pk):
     forumcomment= get_object_or_404(Forum_Reply,pk=pk)
     if request.method == 'GET':
             forumreply = Forum_Reply.objects.filter(forumcomment_id = forumcomment.id)
-            serializer = ForumReplySerializer(forumcomment, many= True)
+            serializer = ForumReplySerializer(forumreply, many= True)
             return Response(serializer.data, status = status.HTTP_200_OK)
     elif request.method == "PUT":
             serializer = ForumReplySerializer(forumcomment, data=request.data)
