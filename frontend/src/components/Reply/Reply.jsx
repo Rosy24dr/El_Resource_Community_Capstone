@@ -69,10 +69,10 @@ const Reply = (props) => {
     }
   };
 
-  async function deleteReply() {
+  async function deleteReply(deletedReply) {
     try {
-      let result = await axios.put(
-        `http://127.0.0.1:8000/api/forumreply/${idToDelete}/`,
+      let result = await axios.delete(
+        `http://127.0.0.1:8000/api/forumreply/delete/${deletedReply}/`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -152,12 +152,11 @@ const Reply = (props) => {
             <div>{r.date}</div>
             <button onClick={() => setReplyToUpdate(r)}>Edit Reply</button>
             <form onSubmit={handleDelete}>
-            <button onClick={() => setReplyToDelete(r)}>Delete Reply</button>
+            <button onClick={() => deleteReply(r.id)}>Delete Reply</button>
             </form>
           </div>
         );
-      })} <main>
-      </main>
+      })}
 
       <ReplyForm
         addReply={addReply}
