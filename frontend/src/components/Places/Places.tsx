@@ -1,3 +1,4 @@
+import React from "react";
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -5,17 +6,15 @@ import usePlacesAutocomplete, {
   import {
     Combobox,
     ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption,
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
+  
   
   type PlacesProps = {
    setAddress: (position: google.maps.LatLngLiteral) => void;
   };
   
-  export default function Places({setAddress }: PlacesProps) {
+  export default function Places({setAddress}: PlacesProps) {
     const {
       ready,
       value,
@@ -24,8 +23,8 @@ import usePlacesAutocomplete, {
       clearSuggestions,
     } = usePlacesAutocomplete();
   
-    return (
-        <div></div>
- 
-    );
+    return 
+  // <Combobox onSelect={() => {}}>
+  //     <ComboboxInput value={value} onChange={e => setValue(e.target.value)} disabled={!ready} className="combox-input"/>
+  //   </Combobox>
   }

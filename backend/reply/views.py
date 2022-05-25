@@ -31,17 +31,11 @@ def create_reply(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def forum_reply_by_comment_id(request, pk):
+    reply = get_object_or_404(Forum_Reply, pk=pk)
     if request.method == 'GET':
             forumreply = Forum_Reply.objects.filter(forumcomment_id = pk)
             serializer = ForumReplySerializer(forumreply, many= True)
-            return Response(serializer.data, status = status.HTTP_200_OK)
-
-
-
-@api_view(['PUT', 'PATCH', 'DELETE'])
-@permission_classes([IsAuthenticated])
-def reply_details(request, pk):
-    reply = get_object_or_404(Forum_Reply, pk=pk)
+            return Response(serializer.data, status = status.HTTP_200_OK)    
     if request.method == "PUT":
             serializer = ForumReplySerializer(reply, data=request.data)
             if serializer.is_valid(raise_exception=True):

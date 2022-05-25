@@ -4,10 +4,9 @@ import Places from "../Places/Places.tsx"
 import {
   GoogleMap,
   Marker,
-  DirectionsRenderer,
-  Circle,
-  MarkerClusterer,
 } from "@react-google-maps/api";
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { KEY } from "../../LocalKey";
 
 
 type LatLngLiteral = google.maps.LatLngLiteral;
@@ -31,6 +30,9 @@ export default function Map() {
       </div>
       <div className="map">
         <GoogleMap zoom={8} center={center} mapContainerClassName="map-container"></GoogleMap>
+        <GooglePlacesAutocomplete
+      apiKey= {KEY}
+    />
       </div>
     </div>
 

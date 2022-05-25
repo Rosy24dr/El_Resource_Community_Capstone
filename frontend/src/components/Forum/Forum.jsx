@@ -42,6 +42,7 @@ const Forum = (props) => {
           <div key={p.id}>
             <div>{p.topic}</div>
             <div>{p.description}</div>
+            <div>{p.category}</div>
             <div>{p.date}</div>
             <Comment user={user} forumpostId={p.id} />
           </div>
