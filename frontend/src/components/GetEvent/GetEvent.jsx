@@ -55,13 +55,12 @@ const GetEvent = (props) => {
 
   function handleAdd() {
     const newFavoriteEvent = favoriteEvent.concat({ events });
-    SetFavoriteEvent(newFavoriteEvent)    
+    SetFavoriteEvent(newFavoriteEvent)  
+    console.log(newFavoriteEvent)  
   }
-
-
-
   return (
     <div>
+  
       {events.map((e) => {
           return (
             <div>

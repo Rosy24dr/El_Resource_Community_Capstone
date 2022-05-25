@@ -89,6 +89,7 @@ const Reply = (props) => {
   }
 
   const setReplyToUpdate = (reply) => {
+    setButtonPopup(true);
     setIdToupdate(reply.id);
     setContentToUpdate(reply.content);
     setDateToupdate(reply.date);

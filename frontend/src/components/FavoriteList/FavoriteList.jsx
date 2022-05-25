@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 
 const favoriteList = (props) => {
@@ -6,6 +6,7 @@ const favoriteList = (props) => {
 
   return (
     <ul>
+      
       {props.favoriteEvent.map((f) => (
         <li key={f.id}>
           <div key={f.id}>{f.start_date}</div>
