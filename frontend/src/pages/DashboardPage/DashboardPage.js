@@ -1,6 +1,6 @@
 import React from "react"
 import GetEvent from "../../components/GetEvent/GetEvent"
-import GooglePlaces from "../../components/GooglePlaces/GooglePlaces"
+import Map from "../../components/Map/Map"
 
 const DashboardPage = (props) => {
     return(
@@ -9,7 +9,7 @@ const DashboardPage = (props) => {
               <GetEvent/>  
             </div>
             <div>
-                <GooglePlaces/>
+                <Map/>
             </div>
         </div>
        
