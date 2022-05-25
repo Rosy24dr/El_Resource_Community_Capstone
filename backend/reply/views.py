@@ -4,7 +4,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import get_object_or_404
 from .models import Forum_Reply
-from .models import Forum_Comment
 from .serializer import ForumReplySerializer
 from django.contrib.auth.models import User
 
@@ -50,8 +49,8 @@ def forum_reply_by_comment_id(request, pk):
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
-def delete_reply(request, forum_reply_id):
-    reply = Forum_Reply.objects.get(pk=forum_reply_id)      
+def delete_reply(request, pk):
+    reply = Forum_Reply.objects.get(pk=pk)      
     if request.method == 'DELETE':
             serializer = ForumReplySerializer(reply, many=False)
             reply.delete()
