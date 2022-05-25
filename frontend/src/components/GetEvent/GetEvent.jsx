@@ -3,6 +3,7 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import EventForm from "../EventForm/EventForm"
 import SearchBar from "../SearchBar/SearchBar";
+import FavoriteList from "../FavoriteList/FavoriteList";
 
 const favoriteList = [];
 
@@ -76,8 +77,10 @@ const GetEvent = (props) => {
           );
         }
       )}
-      <EventForm addEvent= {addEvent} user={user} />
-      <SearchBar events={events} setEvents={setEvents}/>
+       <SearchBar events={events} setEvents={setEvents}/>
+       <FavoriteList favoriteEvent={favoriteEvent}/>
+       <EventForm addEvent= {addEvent} user={user} />
+     
     </div>
     
   );
