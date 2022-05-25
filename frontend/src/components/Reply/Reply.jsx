@@ -7,29 +7,17 @@ import Popup from "../Popup/Popup";
 const Reply = (props) => {
   const [user, token] = useAuth();
   const [replies, setReplies] = useState([]);
-  const [contentToUpdate,setContentToUpdate]=useState('')
-  const [dateToUpdate,setDateToupdate] = useState('')
-  const [idToUpdate,setIdToupdate] = useState()
-  const [buttonPopup, setButtonPopup] = useState(false)
-
+  const [contentToUpdate, setContentToUpdate] = useState("");
+  const [dateToUpdate, setDateToupdate] = useState("");
+  const [idToUpdate, setIdToupdate] = useState();
+  const [buttonPopup, setButtonPopup] = useState(false);
+  const [idToDelete,setIdToDelete] = useState()
 
   useEffect(() => {
     getReplies();
   }, []);
 
-    function handleUpdate(event) {
-    event.preventDefault();
-    let reply = {
-      user: props.user.id,
-      forumcomment_id: props.forumcommentId,
-      content: contentToUpdate,
-      date: dateToUpdate,
-    };
-    console.log(reply);
-    updateReply(reply)
-  }
-
-  
+ 
   const getReplies = async () => {
     try {
       let result = await axios.get(
@@ -64,64 +52,105 @@ const Reply = (props) => {
     }
   };
 
-   const updateReply = async (updatedReply) => {
+  const updateReply = async (updatedReply) => {
     try {
       let result = await axios.put(
-        `http://127.0.0.1:8000/api/forumreply/${idToUpdate}/`,updatedReply,
+        `http://127.0.0.1:8000/api/forumreply/${idToUpdate}/`,
+        updatedReply,
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
       );
-      console.log(updatedReply)
       getReplies();
     } catch (error) {
       console.log(error.message);
     }
   };
 
-    const setReplyToUpdate = (reply) =>{
-      setIdToupdate(reply.id)
-      setContentToUpdate(reply.content)
-      setDateToupdate(reply.date)
+  async function deleteEvent() {
+    try {
+      let result = await axios.put(
+        `http://127.0.0.1:8000/api/forumreply/reply/${idToDelete}/`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      getReplies();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+    
+
+  const setReplyToUpdate = (reply) => {
+    setIdToupdate(reply.id);
+    setContentToUpdate(reply.content);
+    setDateToupdate(reply.date);
+  };
+
+ function handleUpdate(event) {
+    event.preventDefault();
+    let reply = {
+      user: props.user.id,
+      forumcomment_id: props.forumcommentId,
+      content: contentToUpdate,
+      date: dateToUpdate,
+    };
+    console.log(reply);
+    updateReply(reply);
   }
 
+
+  function handleDelete(reply) {
+    let response = prompt(
+      "Are you sure you would like to delete this reply? "
+    ).toLowerCase();
+    if (response === "yes") {
+      deleteEvent(reply.id);
+    }
+  }
+
+  
   return (
     <div>
       <main>
         <button onClick={() => setButtonPopup(true)}>Edit Reply</button>
       </main>
-      
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}> 
-      <form onSubmit={handleUpdate}>
-        <div>
-          <label for="content"></label>
-          <input
-            type="text"
-            defaultValue={contentToUpdate}
-            placeholder="Enter text"
-            onChange={(event) => setContentToUpdate(event.target.value)}
-          />
-        </div>
-        <div>
-          <label for="Date">Date</label>
-          <input
-            type="Date"
-            defaultValue={dateToUpdate}
-            placeholder="Enter date"
-            onChange={(event) => setDateToupdate(event.target.value)}
-          />
-        </div>
-        <button className="search-button">Edit Reply</button>
-      </form>
+
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <form onSubmit={handleUpdate}>
+          <div>
+            <label for="content"></label>
+            <input
+              type="text"
+              defaultValue={contentToUpdate}
+              placeholder="Enter text"
+              onChange={(event) => setContentToUpdate(event.target.value)}
+            />
+          </div>
+          <div>
+            <label for="Date">Date</label>
+            <input
+              type="Date"
+              defaultValue={dateToUpdate}
+              placeholder="Enter date"
+              onChange={(event) => setDateToupdate(event.target.value)}
+            />
+          </div>
+          <button className="search-button">Edit Reply</button>
+        </form>
       </Popup>
       {replies.map((r) => {
         return (
           <div>
             <div key={r.id}>{r.content}</div>
             <div>{r.date}</div>
-            <button onClick={()=>setReplyToUpdate(r)}>Edit Reply</button>
+            <button onClick={() => setReplyToUpdate(r)}>Edit Reply</button>
+            <button onClick={() => handleDelete(r)}>Delete Reply</button>
           </div>
         );
       })}

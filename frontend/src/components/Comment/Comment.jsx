@@ -55,7 +55,7 @@ const Comment = (props) => {
           );
         }
       )}
-      <CommentForm addComment= {addComment} user={props.user} forumpostId={props.forumpostId} />
+      <CommentForm addComment= {addComment} user={user} forumpostId={props.forumpostId} />
     </div>
     
   );

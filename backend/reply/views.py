@@ -26,15 +26,23 @@ def create_reply(request):
                 serializer.save(user = request.user)
                 return Response(serializer.data,status.HTTP_201_CREATED)
 
-@api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
+                
+
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def forum_reply_by_id(request, pk):
-    reply = get_object_or_404(Forum_Reply, pk=pk)
+def forum_reply_by_comment_id(request, pk):
     if request.method == 'GET':
             forumreply = Forum_Reply.objects.filter(forumcomment_id = pk)
             serializer = ForumReplySerializer(forumreply, many= True)
             return Response(serializer.data, status = status.HTTP_200_OK)
-    elif request.method == "PUT":
+
+
+
+@api_view(['PUT', 'PATCH', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def reply_details(request, pk):
+    reply = get_object_or_404(Forum_Reply, pk=pk)
+    if request.method == "PUT":
             serializer = ForumReplySerializer(reply, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save(user = request.user)
