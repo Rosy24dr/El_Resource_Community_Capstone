@@ -121,10 +121,6 @@ const Reply = (props) => {
   
   return (
     <div>
-      <main>
-        <button onClick={() => setButtonPopup(true)}>Edit Reply</button>
-      </main>
-
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleUpdate}>
           <div>
@@ -159,7 +155,8 @@ const Reply = (props) => {
             </form>
           </div>
         );
-      })}
+      })} <main>
+      </main>
 
       <ReplyForm
         addReply={addReply}

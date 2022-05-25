@@ -4,9 +4,13 @@ import useAuth from "../../hooks/useAuth";
 import EventForm from "../EventForm/EventForm"
 import SearchBar from "../SearchBar/SearchBar";
 
+const favoriteList = [];
+
 const GetEvent = (props) => {
   const [user, token] = useAuth();
   const [events, setEvents] = useState([]);
+  const [favoriteEvent, SetFavoriteEvent] = useState(favoriteList);
+  
 
   useEffect(() => {
     getEvents();
@@ -44,6 +48,17 @@ const GetEvent = (props) => {
     }
   };
 
+  function handleChange(event) {
+    setEvents(event.target.value)
+  }
+
+  function handleAdd() {
+    const newFavoriteEvent = favoriteEvent.concat({ events });
+    SetFavoriteEvent(newFavoriteEvent)    
+  }
+
+
+
   return (
     <div>
       {events.map((e) => {
@@ -56,6 +71,7 @@ const GetEvent = (props) => {
               <div>{e.category}</div>
               <div>{e.address}</div>
               <div>{e.zip_code}</div>
+              <button value={events} onChange={handleChange} onClick={handleAdd}>Favorite</button>
             </div> 
           );
         }
