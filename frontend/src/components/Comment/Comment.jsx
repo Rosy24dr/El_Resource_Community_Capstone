@@ -100,7 +100,7 @@ const Comment = (props) => {
   function handleUpdate(event) {
     event.preventDefault();
     let comment = {
-      user: props.user.id,
+      user: user.id,
       forumpost_id: props.forumpostId,
       content: contentToUpdate,
       date: dateToUpdate,
