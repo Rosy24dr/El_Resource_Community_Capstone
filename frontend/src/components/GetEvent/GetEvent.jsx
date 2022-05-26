@@ -5,6 +5,7 @@ import EventForm from "../EventForm/EventForm";
 import SearchBar from "../SearchBar/SearchBar";
 import FavoriteEvents from "../FavoriteEvents/FavoriteEvents";
 import Popup from "../Popup/Popup";
+import Item from "antd/lib/list/Item";
 
 const favoriteList = [];
 
@@ -146,10 +147,10 @@ const GetEvent = (props) => {
     setEvents(event.target.value);
   }
 
-  function handleAdd() {
-    const newFavoriteEvent = favoriteEvent.concat({ events });
-    setFavoriteEvent(newFavoriteEvent);
-    console.log(newFavoriteEvent);
+  function handleAdd(id, copy) {
+    // const newFavoriteEvent = favoriteEvent.concat({ events });
+    setFavoriteEvent([...favoriteEvent, events.find(event => event.id === id)]);
+    if(!copy) setEvents(events.filter(event => Item.id !== id));
   }
 
   return (
