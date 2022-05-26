@@ -21,6 +21,7 @@ const EventForm = (props) => {
       content: content,
       category: category,
       address: address,
+      zipCode: zipCode,
     };
     props.addEvent(newEvent);
   }

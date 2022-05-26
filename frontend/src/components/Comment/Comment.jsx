@@ -43,6 +43,31 @@ const Comment = (props) => {
     }
   };
 
+  async function deleteComment(comment) {
+    try {
+      let result = await axios.delete(
+        `http://127.0.0.1:8000/api/forumcomments/delete/${comment}/`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      getComments();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  function handleDelete(comment) {
+    let response = prompt(
+      "Are you sure you would like to delete this comment? "
+    ).toLowerCase();
+    if (response === "yes") {
+      deleteComment(comment);
+    }
+  }
+
   return (
     <div>
       {comments.map((c) => {
@@ -50,6 +75,7 @@ const Comment = (props) => {
             <div>
               <div key={c.id}>{c.content}</div>
               <div>{c.date}</div>
+              <button onClick={() => handleDelete(c.id)}>Delete Comment</button>
               <Reply forumcommentId={c.id} comments={comments} user={props.user}/>
             </div> 
           );
