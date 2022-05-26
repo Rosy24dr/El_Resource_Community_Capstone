@@ -139,7 +139,7 @@ const Reply = (props) => {
               onChange={(event) => setDateToupdate(event.target.value)}
             />
           </div>
-          <button className="search-button">Edit Reply</button>
+          <button>Edit Reply</button>
         </form>
       </Popup>
       {replies.map((r) => {

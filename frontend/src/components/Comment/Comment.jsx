@@ -3,10 +3,15 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import CommentForm from "../CommentForm/CommentForm";
 import Reply from "../Reply/Reply"
+import Popup from "../Popup/Popup";
 
 const Comment = (props) => {
   const [user, token] = useAuth();
   const [comments, setComments] = useState([]);
+  const [contentToUpdate, setContentToUpdate] = useState("");
+  const [dateToUpdate, setDateToupdate] = useState("");
+  const [idToUpdate, setIdToupdate] = useState();
+  const [buttonPopup, setButtonPopup] = useState(false);
 
   useEffect(() => {
     getComments();
@@ -59,6 +64,23 @@ const Comment = (props) => {
     }
   };
 
+  const updateComment = async (updatedComment) => {
+    try {
+      let result = await axios.put(
+        `http://127.0.0.1:8000/api/forumcomments/${idToUpdate}/`,
+        updatedComment,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      getComments();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   function handleDelete(comment) {
     let response = prompt(
       "Are you sure you would like to delete this comment? "
@@ -68,13 +90,49 @@ const Comment = (props) => {
     }
   }
 
+  const setCommentToUpdate = (comment) => {
+    setButtonPopup(true);
+    setIdToupdate(comment.id);
+    setContentToUpdate(comment.content);
+    setDateToupdate(comment.date);
+  };
+
+  function handleUpdate(event) {
+    event.preventDefault();
+    let comment = {
+      user: props.user.id,
+      forumpost_id: props.forumpostId,
+      content: contentToUpdate,
+      date: dateToUpdate,
+    };
+    console.log(comment);
+    updateComment(comment);
+  }
+
   return (
     <div>
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <form onSubmit={handleUpdate}>
+          <input
+            type="text"
+            value={contentToUpdate}
+            placeholder="Enter text"
+            onChange={(event) => setContentToUpdate(event.target.value)}
+          />
+          <input
+            type="date"
+            value={dateToUpdate}
+            onChange={(event) => setDateToupdate(event.target.value)}
+          />
+          <button>Edit Comment</button>
+        </form>
+      </Popup>
       {comments.map((c) => {
           return (
             <div>
               <div key={c.id}>{c.content}</div>
               <div>{c.date}</div>
+              <button onClick={() => setCommentToUpdate(c)}>Edit Comment</button>
               <button onClick={() => handleDelete(c.id)}>Delete Comment</button>
               <Reply forumcommentId={c.id} comments={comments} user={props.user}/>
             </div> 

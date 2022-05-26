@@ -30,7 +30,7 @@ def create_comment(request):
 @api_view(['GET', 'PUT', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def forum_comment_by_id(request, pk):
-    forumpost = get_object_or_404(Forum_Post,pk=pk)
+    forumpost = get_object_or_404(Forum_Comment,pk=pk)
     if request.method == 'GET':
             forumcomment = Forum_Comment.objects.filter(forumpost_id = forumpost.id)
             serializer = ForumCommentSerializer(forumcomment, many= True)
