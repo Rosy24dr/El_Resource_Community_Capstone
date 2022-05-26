@@ -4,8 +4,6 @@ import React from "react";
 
 const FavoriteEvents = (props) => {
 
-
-  
   return (
     <ul>
       {props.favoriteEvent.map((f) => (

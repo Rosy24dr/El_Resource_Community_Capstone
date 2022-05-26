@@ -25,7 +25,6 @@ const GetEvent = (props) => {
 
   useEffect(() => {
     getEvents();
-    getFavoriteEvents();
   }, []);
 
   const getEvents = async () => {
@@ -126,31 +125,49 @@ const GetEvent = (props) => {
     }
   }
 
-  const getFavoriteEvents = async (favoriteEvent) => {
+  const getFavoriteEvents = async (id) => {
     try {
       let result = await axios.get(
-        "http://127.0.0.1:8000/api/favoriteevents/",
-        favoriteEvent,
+        `http://127.0.0.1:8000/api/favoriteevents/${id}/`,
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
       );
-      setFavoriteEvent(result.data);
+      props.setFavoriteEvent(result.data);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  function handleChange(event) {
-    setEvents(event.target.value);
-  }
+  const addFavoriteEvent = async (newFavoriteEvent) => {
+    try {
+      await axios.post(
+        "http://127.0.0.1:8000/api/favoriteevents/create/",
+        newFavoriteEvent,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      getFavoriteEvents();
+    } catch (error) {
+      console.log(newFavoriteEvent);
+      console.log(error.message);
+    }
+  };
 
-  function handleAdd(id, copy) {
+  // function handleChange(event) {
+  //   setEvents(event.target.value);
+  // }
+
+  function handleFavorite(id) {
     // const newFavoriteEvent = favoriteEvent.concat({ events });
-    setFavoriteEvent([...favoriteEvent, events.find(event => event.id === id)]);
-    if(!copy) setEvents(events.filter(event => Item.id !== id));
+    setFavoriteEvent([...favoriteEvent, events.find((event) => id === id)]);
+    // if(!copy) {setEvents(events.filter(event => Item.id !== id){
+    addFavoriteEvent(id);
   }
 
   return (
@@ -205,7 +222,11 @@ const GetEvent = (props) => {
             <div>{e.category}</div>
             <div>{e.address}</div>
             <div>{e.zip_code}</div>
-            <button value={events} onChange={handleChange} onClick={handleAdd}>
+            <button
+              onClick={() => handleFavorite(e.id)}
+              value={favoriteEvent}
+              // onChange={handleChange}
+            >
               Favorite
             </button>
             <button onClick={() => setEventToUpdate(e)}>Edit Event</button>
@@ -214,7 +235,10 @@ const GetEvent = (props) => {
         );
       })}
       <SearchBar events={events} setEvents={setEvents} />
-      <FavoriteEvents favoriteEvent={favoriteEvent} />
+      <FavoriteEvents
+        favoriteEvent={favoriteEvent}
+        setFavoriteEvent={setFavoriteEvent}
+      />
       <EventForm addEvent={addEvent} user={user} />
     </div>
   );
