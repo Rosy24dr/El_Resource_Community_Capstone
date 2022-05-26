@@ -1,11 +1,18 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 
 const FavoriteEvents = (props) => {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() =>{
+    console.log('rerender')
+    setLoading(false)
+  }, [props])
 
   return (
-    <ul>
+<ul>
+      {console.log(props)}
       {props.favoriteEvent.map((f) => (
         <li key={f.id}>
           <div>{f.start_date}</div>
