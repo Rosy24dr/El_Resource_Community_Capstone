@@ -10,9 +10,9 @@ from forum.models import Forum_Post
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_all_comments(request):
+def get_all_comments(request, forumpost_id):
     if request.method == 'GET':
-        comments = Forum_Comment.objects.all()
+        comments = Forum_Comment.objects.all(forumpost_id=forumpost_id)
         serializer = ForumCommentSerializer(comments, many=True)
         return Response(serializer.data, status = status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -27,8 +27,7 @@ def create_comment(request):
                 return Response(serializer.data,status.HTTP_201_CREATED)
     
 
-
-@api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
+@api_view(['GET', 'PUT', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def forum_comment_by_id(request, pk):
     forumpost = get_object_or_404(Forum_Post,pk=pk)
@@ -46,9 +45,12 @@ def forum_comment_by_id(request, pk):
             serializer.is_valid(raise_exception=True)
             serializer.save(user = request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
-    elif request.method == 'DELETE':
-            serializer = ForumCommentSerializer(forumpost, many=False)
-            forumpost .delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
 
-      
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_comment(request, pk):
+    comment = Forum_Comment.objects.get(pk=pk)  
+    if request.method == 'DELETE':
+            serializer = ForumCommentSerializer(comment, many=False)
+            comment.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)      

@@ -3,18 +3,19 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import EventForm from "../EventForm/EventForm"
 import SearchBar from "../SearchBar/SearchBar";
-import FavoriteList from "../FavoriteList/FavoriteList";
+import FavoriteEvents from "../FavoriteEvents/FavoriteEvents";
 
 const favoriteList = [];
 
 const GetEvent = (props) => {
   const [user, token] = useAuth();
   const [events, setEvents] = useState([]);
-  const [favoriteEvent, SetFavoriteEvent] = useState(favoriteList);
+  const [favoriteEvent, setFavoriteEvent] = useState([]);
   
 
   useEffect(() => {
     getEvents();
+    getFavoriteEvents();
   }, []);
 
   const getEvents = async () => {
@@ -49,13 +50,30 @@ const GetEvent = (props) => {
     }
   };
 
+  const getFavoriteEvents = async (favoriteEvent) => {
+    try {
+      let result = await axios.get(
+        "http://127.0.0.1:8000/api/favoriteevents/",
+        favoriteEvent,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      setFavoriteEvent(result.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   function handleChange(event) {
     setEvents(event.target.value)
   }
 
   function handleAdd() {
     const newFavoriteEvent = favoriteEvent.concat({ events });
-    SetFavoriteEvent(newFavoriteEvent)  
+    setFavoriteEvent(newFavoriteEvent)  
     console.log(newFavoriteEvent)  
   }
   return (
@@ -77,7 +95,7 @@ const GetEvent = (props) => {
         }
       )}
        <SearchBar events={events} setEvents={setEvents}/>
-       <FavoriteList favoriteEvent={favoriteEvent}/>
+       <FavoriteEvents favoriteEvent={favoriteEvent}/>
        <EventForm addEvent= {addEvent} user={user} />
      
     </div>

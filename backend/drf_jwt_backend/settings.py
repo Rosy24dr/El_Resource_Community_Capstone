@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'comment',
     'reply',
     'forum',
-    'event'
+    'event',
+    'favoritedevent'
 ]
 
 MIDDLEWARE = [

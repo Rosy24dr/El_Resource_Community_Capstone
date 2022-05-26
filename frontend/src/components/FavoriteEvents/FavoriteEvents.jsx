@@ -1,15 +1,16 @@
+
 import React from "react";
 
 
-const favoriteList = (props) => {
- 
+const FavoriteEvents = (props) => {
 
+
+  
   return (
     <ul>
-      
       {props.favoriteEvent.map((f) => (
         <li key={f.id}>
-          <div key={f.id}>{f.start_date}</div>
+          <div>{f.start_date}</div>
           <div>{f.end_date}</div>
           <div>{f.title}</div>
           <div>{f.content}</div>
@@ -22,4 +23,4 @@ const favoriteList = (props) => {
   );
 };
 
-export default favoriteList;
+export default FavoriteEvents;
