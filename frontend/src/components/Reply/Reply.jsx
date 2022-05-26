@@ -11,7 +11,6 @@ const Reply = (props) => {
   const [dateToUpdate, setDateToupdate] = useState("");
   const [idToUpdate, setIdToupdate] = useState();
   const [buttonPopup, setButtonPopup] = useState(false);
-  const [idToDelete,setIdToDelete] = useState()
 
   useEffect(() => {
     getReplies();
@@ -84,9 +83,7 @@ const Reply = (props) => {
       console.log(error.message);
     }
   };
-  // const setReplyToDelete = (reply)=> {
-  //   setIdToDelete(reply.id);
-  // }
+
 
   const setReplyToUpdate = (reply) => {
     setButtonPopup(true);
