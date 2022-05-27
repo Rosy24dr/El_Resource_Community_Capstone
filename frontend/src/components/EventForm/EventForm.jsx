@@ -1,5 +1,7 @@
+import { Card } from "antd";
 import React, { useState } from "react";
 import Popup from "../Popup/Popup";
+import useAuth from "../../hooks/useAuth";
 
 const EventForm = (props) => {
   const [content, setContent] = useState("");
@@ -10,6 +12,7 @@ const EventForm = (props) => {
   const [category, setCategories] = useState ("")
   const [zipCode, setZipCode] = useState ("")
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [user, token] = useAuth();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -29,7 +32,7 @@ const EventForm = (props) => {
   return (
     <div>
       <main>
-        <button onClick={() => setButtonPopup(true)}>Add Event</button>
+      {user.is_superuser ? <button onClick={() => setButtonPopup(true)}>Add Event</button> : null}
       </main>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleSubmit}>
@@ -68,7 +71,7 @@ const EventForm = (props) => {
             value={zipCode}
             onChange={(event) => setZipCode(event.target.value)}
           />
-          <button>Add Event</button>
+          {user.is_superuser ? <button>Add Event</button> : null}
         </form>
       </Popup>
     </div>

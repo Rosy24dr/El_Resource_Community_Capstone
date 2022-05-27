@@ -130,6 +130,7 @@ const Comment = (props) => {
       {comments.map((c) => {
           return (
             <div>
+              <div>{c.user.username}</div>
               <div key={c.id}>{c.content}</div>
               <div>{c.date}</div>
               <button onClick={() => setCommentToUpdate(c)}>Edit Comment</button>

@@ -1,21 +1,38 @@
-import "./About.css"
+import "./About.css";
 import { Link } from "react-router-dom";
+import { Accordion, Carousel } from "react-bootstrap";
+import aboutUs from "./aboutUs.jpg";
 
 const About = () => {
-    return ( 
-        <body className="about" id="about">
-        <div > 
-        <Link to="/">
-              <button>Back to Home</button>
-            </Link>
-          <h1>ABOUT US</h1>
-          <div>
-            <p>TEST</p>
-          </div>
+  return (
+    <Carousel fade className="about">
+      <Carousel.Item>
+        <img className="d-block w-100" src={aboutUs} alt="First slide" />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img className="d-block w-100" src={aboutUs} alt="Second slide" />
 
-        </div>
-        </body>
-     );
-}
- 
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img className="d-block w-100" src={aboutUs} alt="Third slide" />
+
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+  );
+};
+
 export default About;

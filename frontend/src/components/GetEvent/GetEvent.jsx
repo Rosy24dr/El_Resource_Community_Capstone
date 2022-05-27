@@ -5,11 +5,12 @@ import EventForm from "../EventForm/EventForm";
 import SearchBar from "../SearchBar/SearchBar";
 import FavoriteEvents from "../FavoriteEvents/FavoriteEvents";
 import Popup from "../Popup/Popup";
-import FullCalendar, { formatDate } from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
+import FullCalendar, { formatDate } from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 import { Link } from "react-router-dom";
+import { ListGroup } from "react-bootstrap";
 
 const GetEvent = (props) => {
   const [user, token] = useAuth();
@@ -163,20 +164,13 @@ const GetEvent = (props) => {
     }
   };
 
-  // function handleChange(event) {
-  //   setEvents(event.target.value);
-  // }
-
   function handleFavorite(id) {
-    // const newFavoriteEvent = favoriteEvent.concat({ events });
-    // setFavoriteEvent([...favoriteEvent, events.find((event) => id === id)]);
-    // if(!copy) {setEvents(events.filter(event => Item.id !== id){
     addFavoriteEvent(id);
   }
 
-  // if (user.is_employee === true) {
   return (
-    <div>
+    <div>   
+      <SearchBar events={events} setEvents={setEvents} />
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleUpdate}>
           <input
@@ -214,27 +208,31 @@ const GetEvent = (props) => {
             value={zipCodeToUpdate}
             onChange={(event) => setZipCodeToUpdate(event.target.value)}
           />
-          <button>Edit Event</button>
+          {user.is_superuser ? <button>Edit Event</button> : null}
         </form>
       </Popup>
 
-      {events.map((e) => {
-        return (
-          <div key={e.id}>
-            <div>Start Date: {e.start_date}</div>
-            <div>End Date: {e.end_date}</div>
-            <div>Title: {e.title}</div>
-            <div>Description: {e.content}</div>
-            <div>Category: {e.category}</div>
-            <div>Address: {e.address}</div>
-            <div>Zip code: {e.zip_code}</div>
-            <button onClick={() => handleFavorite(e.id)}>Favorite</button>
-            <button onClick={() => setEventToUpdate(e)}>Edit Event</button>
-            <button onClick={() => handleDelete(e.id)}>Delete Event</button>
-          </div>
-        );
-      })}
-      <SearchBar events={events} setEvents={setEvents} />
+      <ListGroup>
+        <ListGroup.Item>
+          {events.map((e) => {
+            return (
+              <div key={e.id}>
+                <div>Start Date: {e.start_date}</div>
+                <div>End Date: {e.end_date}</div>
+                <div>Title: {e.title}</div>
+                <div>Description: {e.content}</div>
+                <div>Category: {e.category}</div>
+                <div>Address: {e.address}</div>
+                <div>Zip code: {e.zip_code}</div>
+                <button onClick={() => handleFavorite(e.id)}>Favorite</button>
+                {user.is_superuser ? <button onClick={() => setEventToUpdate(e)}>Edit Event</button> : null}
+                {user.is_superuser ? <button onClick={() => handleDelete(e.id)}>Delete Event</button> : null}
+              </div>
+            );
+          })}
+        </ListGroup.Item>
+      </ListGroup>
+   
 
       <EventForm addEvent={addEvent} user={user} />
       {favoriteEvent && (

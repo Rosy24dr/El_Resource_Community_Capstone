@@ -1,3 +1,5 @@
+
+
 ul {
   display: flex;
   justify-content: space-between;
@@ -9,27 +11,41 @@ li {
 }
 
 .navBar {
-  background: steelblue;
-  box-shadow: 4px 2px 5px gray;
-  color: white;
+
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
+  
 }
 
 .navBar button {
   background: transparent;
   border: 2px solid white;
   color: white;
-  padding: 0.4rem 0.5rem;
 }
 
-.navBar button:hover {
+/* .navBar button:hover {
   background: white;
   color: steelblue;
   cursor: pointer;
-}
+} */
 
 .brand {
   cursor: pointer;
   font-size: 2rem;
+}
+
+.image{
+  max-width: 29%;
+  margin: -14%;
+
+}
+
+.title{
+  padding-left: 19%;
+  margin: -9%; 
+  font-size: 14;
+}
+
+link{
+  text-decoration: none;
 }
