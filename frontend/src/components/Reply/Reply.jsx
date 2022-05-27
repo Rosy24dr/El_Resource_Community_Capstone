@@ -144,8 +144,9 @@ const Reply = (props) => {
       </Popup>
       {replies.map((r) => {
         return (
-          <div>
-            <div key={r.id}>{r.content}</div>
+          <div key={r.id}>
+            <div>{r.user.username}</div>
+            <div>{r.content}</div>
             <div>{r.date}</div>
             <button onClick={() => setReplyToUpdate(r)}>Edit Reply</button>
             <button onClick={() => handleDelete(r.id)}>Delete Reply</button>

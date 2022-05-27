@@ -5,8 +5,11 @@ import EventForm from "../EventForm/EventForm";
 import SearchBar from "../SearchBar/SearchBar";
 import FavoriteEvents from "../FavoriteEvents/FavoriteEvents";
 import Popup from "../Popup/Popup";
-
-
+import FullCalendar, { formatDate } from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import interactionPlugin from '@fullcalendar/interaction'
+import { Link } from "react-router-dom";
 
 const GetEvent = (props) => {
   const [user, token] = useAuth();
@@ -144,7 +147,10 @@ const GetEvent = (props) => {
   const addFavoriteEvent = async (newFavoriteEvent_id) => {
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/favoriteevents/create/" + newFavoriteEvent_id + '/', {}, 
+        "http://127.0.0.1:8000/api/favoriteevents/create/" +
+          newFavoriteEvent_id +
+          "/",
+        {},
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -168,6 +174,7 @@ const GetEvent = (props) => {
     addFavoriteEvent(id);
   }
 
+  // if (user.is_employee === true) {
   return (
     <div>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
@@ -210,32 +217,56 @@ const GetEvent = (props) => {
           <button>Edit Event</button>
         </form>
       </Popup>
+
       {events.map((e) => {
         return (
-          <div>
-            <div key={e.id}>{e.start_date}</div>
-            <div>{e.end_date}</div>
-            <div>{e.title}</div>
-            <div>{e.content}</div>
-            <div>{e.category}</div>
-            <div>{e.address}</div>
-            <div>{e.zip_code}</div>
-            <button
-              onClick={() => handleFavorite(e.id)}
-
-            >
-              Favorite
-            </button>
+          <div key={e.id}>
+            <div>Start Date: {e.start_date}</div>
+            <div>End Date: {e.end_date}</div>
+            <div>Title: {e.title}</div>
+            <div>Description: {e.content}</div>
+            <div>Category: {e.category}</div>
+            <div>Address: {e.address}</div>
+            <div>Zip code: {e.zip_code}</div>
+            <button onClick={() => handleFavorite(e.id)}>Favorite</button>
             <button onClick={() => setEventToUpdate(e)}>Edit Event</button>
             <button onClick={() => handleDelete(e.id)}>Delete Event</button>
           </div>
         );
       })}
       <SearchBar events={events} setEvents={setEvents} />
-      {favoriteEvent && <FavoriteEvents
-        favoriteEvent={favoriteEvent}
-      />}
+
       <EventForm addEvent={addEvent} user={user} />
+      {favoriteEvent && (
+        <FavoriteEvents
+          favoriteEvent={favoriteEvent}
+          getFavoriteEvents={getFavoriteEvents}
+        />
+      )}
+      <div>
+        <div>
+          <div>
+            <Link to="/">
+              <button>Back to Home</button>
+            </Link>
+          </div>
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            aspectRatio={6}
+            height={400}
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            events={events}
+          />
+        </div>
+      </div>
     </div>
   );
 };

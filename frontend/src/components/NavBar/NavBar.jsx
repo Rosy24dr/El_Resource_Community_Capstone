@@ -17,10 +17,13 @@ const Navbar = () => {
         </li>
         <li>
           <Link  to="/forum">
-               Forum
+               FORUM
           </Link>
           <Link  to="/dashboard">
-               Dashboard
+               DASHBOARD
+          </Link>
+          <Link  to="/about">
+               ABOUT US
           </Link>
         </li>
         <li>

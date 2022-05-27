@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ForumPage from "./pages/ForumPage/ForumPgae";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import About from "./components/About/About";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -34,6 +35,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forum"  element={<ForumPage/>} />
         <Route path="/dashboard"  element={<DashboardPage/>} />
+        <Route path="/about"  element={<About/>} />
       </Routes>
       <Footer />
     </div>
