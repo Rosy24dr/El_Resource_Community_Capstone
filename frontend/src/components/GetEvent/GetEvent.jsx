@@ -171,6 +171,21 @@ const GetEvent = (props) => {
   return (
     <div>   
       <SearchBar events={events} setEvents={setEvents} />
+      <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            aspectRatio={6}
+            height={400}
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            events={events}
+          />
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleUpdate}>
           <input
@@ -216,10 +231,10 @@ const GetEvent = (props) => {
         <ListGroup.Item>
           {events.map((e) => {
             return (
-              <div key={e.id}>
+              <div key={e.id} className="flex grid">
+                <div>Title: {e.title}</div>
                 <div>Start Date: {e.start_date}</div>
                 <div>End Date: {e.end_date}</div>
-                <div>Title: {e.title}</div>
                 <div>Description: {e.content}</div>
                 <div>Category: {e.category}</div>
                 <div>Address: {e.address}</div>
@@ -227,6 +242,7 @@ const GetEvent = (props) => {
                 <button onClick={() => handleFavorite(e.id)}>Favorite</button>
                 {user.is_superuser ? <button onClick={() => setEventToUpdate(e)}>Edit Event</button> : null}
                 {user.is_superuser ? <button onClick={() => handleDelete(e.id)}>Delete Event</button> : null}
+                <hr/>
               </div>
             );
           })}
@@ -248,21 +264,7 @@ const GetEvent = (props) => {
               <button>Back to Home</button>
             </Link>
           </div>
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              left: "prev,next today",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay",
-            }}
-            aspectRatio={6}
-            height={400}
-            editable={true}
-            selectable={true}
-            selectMirror={true}
-            events={events}
-          />
+          
         </div>
       </div>
     </div>

@@ -1,33 +1,34 @@
 
-
 ul {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-}
+  text-decoration: none;}
 
 li {
   font-size: 1.25rem;
+  text-decoration: none;
 }
 
 .navBar {
 
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
   padding: 1.5rem 2rem;
+  background-color: none;
+  text-decoration: none;
+  position: sticky;
   
 }
 
 .navBar button {
   background: transparent;
-  border: 2px solid white;
-  color: white;
+  text-decoration: none;
 }
 
-/* .navBar button:hover {
-  background: white;
-  color: steelblue;
+.navBar button:hover {
   cursor: pointer;
-} */
+  text-decoration: none;
+}
 
 .brand {
   cursor: pointer;
@@ -35,17 +36,79 @@ li {
 }
 
 .image{
-  max-width: 29%;
+  max-width: 23%;
   margin: -14%;
 
 }
 
 .title{
-  padding-left: 19%;
+  padding-left: 14%;
   margin: -9%; 
   font-size: 14;
 }
 
-link{
+#App {
+  font-family: sans-serif;
+  height: 100vh;
+}
+
+#page-wrap {
+  text-align: center;
+  overflow: auto;
+}
+
+.bm-item {
+  display: inline-block;
   text-decoration: none;
+  margin-bottom: 10px;
+  color: #d1d1d1;
+  transition: color 0.2s;
+}
+
+.bm-item:hover {
+  color: white;
+}
+
+.bm-burger-button {
+  position: relative;
+  width: 36px;
+  height: 30px;
+  
+  left: -1145px;
+  top: 100px;
+}
+
+.bm-burger-bars {
+  background: #373a47;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: #bdc3c7;
+}
+
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.navbar.transparent.navbar-inverse .navbar-inner {
+  background: rgba(0,0,0,0.4);
 }

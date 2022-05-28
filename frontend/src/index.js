@@ -6,6 +6,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'mdbreact/dist/css/mdb.css';
+// import Card from "./Card"
 
 ReactDOM.render(
   <React.StrictMode>

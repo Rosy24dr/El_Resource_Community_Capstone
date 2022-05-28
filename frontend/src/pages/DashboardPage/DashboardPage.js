@@ -1,16 +1,16 @@
 import React from "react";
-import GetEvent from "../../components/GetEvent/GetEvent";
-import Map from "../../components/Map/Map";
+// import GetEvent from "../../components/GetEvent/GetEvent";
+// import Map from "../../components/Map/Map";
 
 const DashboardPage = (props) => {
   return (
     <div>
-      <div>
+      {/* <div>
         <GetEvent />
       </div>
       <div>
         <Map/>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -6,6 +6,10 @@ import "./HomePage.css"
 
 // import axios from "axios";
 
+
+import GetEvent from "../../components/GetEvent/GetEvent";
+import Map from "../../components/Map/Map";
+
 const HomePage = () => {
  
  
@@ -15,6 +19,13 @@ const HomePage = () => {
     <body>
     <div>
     <div className="container">
+    <div>
+        <GetEvent />
+      </div>
+      <div>
+        <Map/>
+      </div>
+
      
       
 

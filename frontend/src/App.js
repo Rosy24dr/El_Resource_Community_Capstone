@@ -17,11 +17,12 @@ import Footer from "./components/Footer/Footer";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
-
 function App() {
   return (
-    <div>   
-      <Navbar />
+    <div>
+      <div>
+      <Navbar id="App" />
+      </div>
       <Routes>
         <Route
           path="/"
@@ -30,14 +31,15 @@ function App() {
               <HomePage />
             </PrivateRoute>
           }
-        />
+        />{" "}
+        
+        <Route path="/forum" element={<ForumPage />} />
+        <Route path="/about" element={<About />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/forum"  element={<ForumPage/>} />
-        <Route path="/dashboard"  element={<DashboardPage/>} />
-        <Route path="/about"  element={<About/>} />
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
-      <Footer />
+      <Footer />ß
     </div>
   );
 }
