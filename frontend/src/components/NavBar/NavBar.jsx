@@ -2,14 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import "./NavBar.css";
+
 import Heart from "./Heart.png";
 import Popup from "../../components/Popup/Popup";
 import useCustomForm from "../../hooks/useCustomForm";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { Sidebar } from "./Sidebar";
-import {  bubble as Menu } from "react-burger-menu";
-// import { } from "react-bootstrap";
+import { bubble as Menu } from "react-burger-menu";
+
 
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
@@ -29,14 +30,13 @@ const Navbar = () => {
     }
   }, [isServerError]);
 
-
   return (
     <body className="navBar">
       <div>
         <ul>
           <li className="brand">
             <div>
-              <Link to="/">
+              <Link to="/login">
                 <img
                   src={Heart}
                   alt="heart with a hand in the center"
@@ -48,23 +48,38 @@ const Navbar = () => {
           </li>
 
           <Menu>
-            <a className="menu-item" href="/login">HOME</a>
+            <a className="menu-item" href="/login">
+              HOME
+            </a>
             <a className="menu-item" href="/forum">
               FORUM
             </a>
-            <a className="menu-item" href="/">DASHBOARD</a>
-            <a className="menu-item" href="/about">ABOUT US</a>
+            <a className="menu-item" href="/">
+              DASHBOARD
+            </a>
+            <a className="menu-item" href="/about">
+              ABOUT US
+            </a>
           </Menu>
 
           <main>
             {user ? (
-              <button onClick={logoutUser}>Logout</button>
+              <button className="navbarLogOutButton" onClick={logoutUser}>
+                Logout
+              </button>
             ) : (
-              <button onClick={() => setButtonPopup(true)}>Login</button>
+              <button
+                className="navbarLoginButton"
+                onClick={() => setButtonPopup(true)}
+              >
+                Login
+              </button>
             )}
             {isServerError ? (
               <p className="error">Login failed, incorrect credentials!</p>
-            ) : null}
+            ) : null} <Link className="navbarRegisterButton" to="/register">
+                  Register!
+                </Link>
           </main>
           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
             <li>
@@ -88,8 +103,8 @@ const Navbar = () => {
                   />
                 </label>
 
-                <Link to="/register">Click to register!</Link>
-                <button>Login!</button>
+                <button onClick={() => setButtonPopup(true)} className="loginPopUpButton">Login!</button>
+               
               </form>
             </li>
           </Popup>
@@ -98,5 +113,4 @@ const Navbar = () => {
     </body>
   );
 };
-
 export default Navbar;

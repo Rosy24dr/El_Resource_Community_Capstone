@@ -1,9 +1,9 @@
-
 ul {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  text-decoration: none;}
+  text-decoration: none;
+}
 
 li {
   font-size: 1.25rem;
@@ -11,19 +11,18 @@ li {
 }
 
 .navBar {
-
   margin-bottom: 0rem;
   padding: 1.5rem 2rem;
-  background-color: none;
+  background-color: transparent;
   text-decoration: none;
   position: sticky;
+  top: 0;
+  z-index: 100;
+  padding-bottom: 0rem;
+  position: relative;
   
 }
 
-.navBar button {
-  background: transparent;
-  text-decoration: none;
-}
 
 .navBar button:hover {
   cursor: pointer;
@@ -35,16 +34,18 @@ li {
   font-size: 2rem;
 }
 
-.image{
-  max-width: 23%;
+.image {
+  max-width: 25%;
   margin: -14%;
-
 }
 
-.title{
+.title {
   padding-left: 14%;
-  margin: -9%; 
-  font-size: 14;
+  margin: -9%;
+  font-size: 41px;
+  padding-left: 16%;
+  color: black;
+  font-family: 'Indie Flower', cursive;
 }
 
 #App {
@@ -70,12 +71,13 @@ li {
 }
 
 .bm-burger-button {
-  position: relative;
+  position: absolute;
   width: 36px;
   height: 30px;
-  
-  left: -1145px;
-  top: 100px;
+
+  top: 18px;
+  margin-left: 600px;
+  margin-top: 20px;
 }
 
 .bm-burger-bars {
@@ -110,5 +112,89 @@ li {
 }
 
 .navbar.transparent.navbar-inverse .navbar-inner {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.navbarLoginButton {
+  background-color: transparent;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 25px;
+  margin-left: -200%;
+  padding: 29%;
+  margin-top: -21%;
+  opacity: 2.4;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  
+}
+
+.navbarLoginButton:hover {
+  opacity: 0.3;
+}
+
+.navbarLoginButton::after {
+  content: "/";
+  position: absolute;
+  right: 375px;
+  line-height: px;
+  color: #333;
+}
+
+
+.navbarLogOutButton {
+  background-color: transparent;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 25px;
+  margin-left: -200%;
+  padding: 4%;
+  opacity: 2.4;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbarLogOutButton:hover {
+  opacity: 0.3;
+}
+
+.navbarLogOutButton::after {
+  content: "/";
+  position: absolute;
+  right: px;
+  line-height: px;
+  color: #333;
+}
+
+.navbarRegisterButton {
+  background-color: transparent;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 25px;
+  opacity: 2.4;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbarRegisterButton:hover {
+  opacity: 0.3;
+}
+
+
+.loginPopUpButton{
+  background-color: black;
+  color: white;
+  padding:4%;
+  margin:-2%;
+  width: 36%;
+  font-size: 15px;
 }
