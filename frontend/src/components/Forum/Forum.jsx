@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import Comment from "../Comment/Comment";
 import PostForm from "../PostForm/PostForm";
 import Popup from "../Popup/Popup";
+import "./Forum.css"
 
 const Forum = (props) => {
   const [user, token] = useAuth();
@@ -112,7 +113,8 @@ const Forum = (props) => {
   }
 
   return (
-    <div>
+    <div>  
+      <PostForm addpost={addPost} user={user} />
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleUpdate}>
           <label for="topic">Topic</label>
@@ -141,7 +143,7 @@ const Forum = (props) => {
             value={dateToUpdate}
             onChange={(event) => setDateToUpdate(event.target.value)}
           />
-          <button>Edit Post</button>
+          <button className="forum-btn">Edit Post</button>
         </form>
       </Popup>
       {post.map((p) => (
@@ -150,12 +152,12 @@ const Forum = (props) => {
             <div>{p.description}</div>
             <div>{p.category}</div>
             <div>{p.date}</div>
-            <button onClick={() => setPostToUpdate(p)}>Edit Post</button>
-            <button onClick={() => handleDelete(p.id)}>Delete Post</button>
+            <button onClick={() => setPostToUpdate(p)} className="forum-btn">Edit Post</button>
+            <button onClick={() => handleDelete(p.id)} className="forum-btn">Delete Post</button>
             <Comment user={user} forumpostId={p.id} />
           </div>
         ))}
-      <PostForm addpost={addPost} user={user} />
+    
     </div>
   );
 };

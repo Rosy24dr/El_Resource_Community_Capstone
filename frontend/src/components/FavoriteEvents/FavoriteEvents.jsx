@@ -60,7 +60,7 @@ const FavoriteEvents = (props) => {
                     <div>Category: {f.event.category}</div>
                     <div>Address: {f.event.address}</div>
                     <div>Zip code: {f.event.zip_code}</div>
-                    <button onClick={() => handleDelete(f.id)}>
+                    <button onClick={() => handleDelete(f.id)} className="favoriteEvent-btn">
                       Delete Event
                     </button>
                   </li>

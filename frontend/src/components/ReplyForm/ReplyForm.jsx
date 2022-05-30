@@ -24,7 +24,7 @@ const PostForm = (props) => {
   return (
     <div>
       <main>
-        <button onClick={() => setButtonPopup(true)}>Add Reply</button>
+        <button onClick={() => setButtonPopup(true)} className="ReplyForm-btn">Add Reply</button>
 
       </main>
     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}> 
@@ -47,7 +47,7 @@ const PostForm = (props) => {
           onChange={(event) => setDate(event.target.value)}
         />
       </div>
-      <button>Add Reply</button>
+      <button className="ReplyForm-btn">Add Reply</button>
     </form>
     </Popup>
    </div> 

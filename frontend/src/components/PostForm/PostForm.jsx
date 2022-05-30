@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Popup from "../Popup/Popup";
+import "./PostForm.css"
 
 const PostForm = (props) => {
   const [topic, setTopic] = useState();
@@ -25,7 +26,7 @@ const PostForm = (props) => {
   return (
     <div>
       <main>
-        <button onClick={() => setButtonPopup(true)}>Add Post</button>
+        <button onClick={() => setButtonPopup(true)} className="PostForm-btn">Add Post</button>
       </main>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handlesubmit}>
@@ -55,7 +56,7 @@ const PostForm = (props) => {
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
-          <button type="submit">Add Post</button>
+          <button type="submit" className="PostForm-btn">Add Post</button>
         </form>
       </Popup>
     </div>

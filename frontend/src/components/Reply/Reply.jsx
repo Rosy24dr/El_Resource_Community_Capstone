@@ -3,6 +3,7 @@ import ReplyForm from "../ReplyForm/ReplyForm";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import Popup from "../Popup/Popup";
+import "./Reply.css"
 
 const Reply = (props) => {
   const [user, token] = useAuth();
@@ -139,7 +140,7 @@ const Reply = (props) => {
               onChange={(event) => setDateToupdate(event.target.value)}
             />
           </div>
-          <button>Edit Reply</button>
+          <button className="Reply-btn">Edit Reply</button>
         </form>
       </Popup>
       {replies.map((r) => {
@@ -148,8 +149,8 @@ const Reply = (props) => {
             <div>{r.user.username}</div>
             <div>{r.content}</div>
             <div>{r.date}</div>
-            <button onClick={() => setReplyToUpdate(r)}>Edit Reply</button>
-            <button onClick={() => handleDelete(r.id)}>Delete Reply</button>
+            <button onClick={() => setReplyToUpdate(r)} className="Reply-btn">Edit Reply</button>
+            <button onClick={() => handleDelete(r.id)} className="Reply-btn">Delete Reply</button>
           </div>
         );
       })}

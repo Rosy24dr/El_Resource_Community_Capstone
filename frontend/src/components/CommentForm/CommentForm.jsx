@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Popup from "../Popup/Popup";
+import './CommentForm.css'
 
 const CommentForm = (props) => {
   const [content, setContent] = useState("");
@@ -21,7 +22,7 @@ const CommentForm = (props) => {
   return (
     <div>
       <main>
-        <button onClick={() => setButtonPopup(true)}>Add Comment</button>
+        <button onClick={() => setButtonPopup(true)} className="commentForm-btn">Add Comment</button>
       </main>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleSubmit}>
@@ -36,7 +37,7 @@ const CommentForm = (props) => {
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
-          <button>Add comment</button>
+          <button className="commentForm-btn">Add comment</button>
         </form>
       </Popup>
     </div>

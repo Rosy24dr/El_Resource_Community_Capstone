@@ -170,7 +170,7 @@ const GetEvent = (props) => {
   }
 
   return (
-    <div>   
+    <div> <EventForm addEvent={addEvent} user={user} />  
       <SearchBar  events={events} setEvents={setEvents} getEvents={getEvents} />
       <Card><FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -249,7 +249,7 @@ const GetEvent = (props) => {
       </ListGroup> */}
    
 
-      <EventForm addEvent={addEvent} user={user} />
+      
       {favoriteEvent && (
         <FavoriteEvents
           favoriteEvent={favoriteEvent}
