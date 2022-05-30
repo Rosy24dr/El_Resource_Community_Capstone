@@ -1,29 +1,39 @@
 import React from "react";
 // import { useEffect, useState } from "react";
-// import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import "./HomePage.css"
 // import Hands from "./Hands.jpg"
 
 // import axios from "axios";
+import { Container, Row} from "react-bootstrap";
+
 
 
 import GetEvent from "../../components/GetEvent/GetEvent";
 import Map from "../../components/Map/Map";
 
+
 const HomePage = () => {
- 
+ const [user, token] = useAuth();
  
 
 
   return (
-    <body>
+
     <div>
     <div className="container">
     <div>
-        <GetEvent />
+      <h1 className="welcome">Welcome {user.username}!</h1> 
+      <Container>
+        <Row>
+          <GetEvent />
+        </Row>
+        <Row>
+        <Map/></Row>
+        </Container>
       </div>
       <div>
-        <Map/>
+       
       </div>
 
      
@@ -31,7 +41,7 @@ const HomePage = () => {
 
     </div>
     </div>
-    </body>
+ 
   );
 };
 

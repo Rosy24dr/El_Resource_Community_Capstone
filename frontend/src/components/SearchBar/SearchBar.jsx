@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import "./SearchBar.css"
+import { BiSearchAlt } from 'react-icons/bi'
+
 
 
 
@@ -25,17 +28,15 @@ const SearchBar = (props) => {
 
   return (
     <div >
-      <div >
-      </div>
       <form onSubmit={handleSearch}>
-        <div>
-          <input
+        <div className="searchBar">
+          <input className="searchBarInput"
             type="text"
             value={eventSearch}
             onChange={(e) => setEventSearch(e.target.value)}
-            placeholder="Search here..."
+            placeholder="Search Resources..."
           />
-          <button className ='search' type="submit">Search</button>
+          <button className ='searchBarButton' type="submit"><BiSearchAlt /></button>
         </div>
       </form>
     </div>

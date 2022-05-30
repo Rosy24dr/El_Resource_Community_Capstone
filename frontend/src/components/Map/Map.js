@@ -5,6 +5,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import './Map.css'
 
 export class Mapcontainer extends Component {
   constructor(props) {
@@ -74,9 +75,9 @@ export class Mapcontainer extends Component {
             loading,
           }) => (
             <div>
-              <input
+              <input placeholder="Search"
                 {...getInputProps({
-                  placeholder: "Search Places ...",
+                 
                   className: "location-search-input",
                 })}
               />
@@ -107,6 +108,7 @@ export class Mapcontainer extends Component {
         </PlacesAutocomplete>
 
         <Map
+          
           google={this.props.google}
           onClick={this.onMapClicked}
           style={this.state.Style}

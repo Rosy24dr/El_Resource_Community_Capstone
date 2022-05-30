@@ -10,7 +10,8 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Link } from "react-router-dom";
-import { ListGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import "./GetEvent.css"
 
 const GetEvent = (props) => {
   const [user, token] = useAuth();
@@ -170,8 +171,8 @@ const GetEvent = (props) => {
 
   return (
     <div>   
-      <SearchBar events={events} setEvents={setEvents} />
-      <FullCalendar
+      <SearchBar  events={events} setEvents={setEvents} getEvents={getEvents} />
+      <Card><FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
             headerToolbar={{
@@ -181,11 +182,8 @@ const GetEvent = (props) => {
             }}
             aspectRatio={6}
             height={400}
-            editable={true}
-            selectable={true}
-            selectMirror={true}
-            events={events}
-          />
+            width={300}
+          /></Card>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleUpdate}>
           <input
@@ -227,11 +225,12 @@ const GetEvent = (props) => {
         </form>
       </Popup>
 
-      <ListGroup>
-        <ListGroup.Item>
+      {/* <ListGroup>
+        <ListGroup.Item> */}
+        {/* <Stack direction="horizontal" gap={3}> */}
           {events.map((e) => {
             return (
-              <div key={e.id} className="flex grid">
+              <div key={e.id} className="eventMapping">
                 <div>Title: {e.title}</div>
                 <div>Start Date: {e.start_date}</div>
                 <div>End Date: {e.end_date}</div>
@@ -239,15 +238,15 @@ const GetEvent = (props) => {
                 <div>Category: {e.category}</div>
                 <div>Address: {e.address}</div>
                 <div>Zip code: {e.zip_code}</div>
-                <button onClick={() => handleFavorite(e.id)}>Favorite</button>
-                {user.is_superuser ? <button onClick={() => setEventToUpdate(e)}>Edit Event</button> : null}
-                {user.is_superuser ? <button onClick={() => handleDelete(e.id)}>Delete Event</button> : null}
+                <button onClick={() => handleFavorite(e.id)} className="eventButtons">Favorite</button>
+                {user.is_superuser ? <button onClick={() => setEventToUpdate(e)} className="eventButtons">Edit Event</button> : null}
+                {user.is_superuser ? <button onClick={() => handleDelete(e.id)} className="eventButtons">Delete Event</button> : null}
                 <hr/>
               </div>
             );
           })}
-        </ListGroup.Item>
-      </ListGroup>
+        {/* </ListGroup.Item>
+      </ListGroup> */}
    
 
       <EventForm addEvent={addEvent} user={user} />
@@ -257,16 +256,6 @@ const GetEvent = (props) => {
           getFavoriteEvents={getFavoriteEvents}
         />
       )}
-      <div>
-        <div>
-          <div>
-            <Link to="/">
-              <button>Back to Home</button>
-            </Link>
-          </div>
-          
-        </div>
-      </div>
     </div>
   );
 };

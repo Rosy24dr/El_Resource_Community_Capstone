@@ -1,6 +1,6 @@
 /* .map-container {
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: ;
     bottom: 0;
     left: 0;
     right: 0;
@@ -30,3 +30,7 @@
     overflow-y: scroll;
     font-family: sans-serif;
 } */
+
+.location-search-input{
+    width: 41%;
+}
