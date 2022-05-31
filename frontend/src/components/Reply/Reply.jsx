@@ -54,7 +54,7 @@ const Reply = (props) => {
   const updateReply = async (updatedReply) => {
     try {
       let result = await axios.put(
-        `http://127.0.0.1:8000/api/forumreply/${idToUpdate}/`,
+        `http://127.0.0.1:8000/api/forumreply/edit/${idToUpdate}/`,
         updatedReply,
         {
           headers: {

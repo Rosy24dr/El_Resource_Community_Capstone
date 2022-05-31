@@ -28,6 +28,7 @@ const Comment = (props) => {
       console.log(error.message);
     }
   };
+
   const addComment = async (newComment) => {
     try {
       await axios.post(
@@ -45,6 +46,7 @@ const Comment = (props) => {
       console.log(error.message);
     }
   };
+
   async function deleteComment(comment) {
     try {
       let result = await axios.delete(
@@ -63,7 +65,7 @@ const Comment = (props) => {
   const updateComment = async (updatedComment) => {
     try {
       let result = await axios.put(
-        `http://127.0.0.1:8000/api/forumcomments/${idToUpdate}/`,
+        `http://127.0.0.1:8000/api/forumcomments/edit/${idToUpdate}/`,
         updatedComment,
         {
           headers: {

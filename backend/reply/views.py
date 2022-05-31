@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from .models import Forum_Reply
 from .serializer import ForumReplySerializer
 from django.contrib.auth.models import User
+from comment.models import Forum_Comment
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -28,24 +29,32 @@ def create_reply(request):
 
                 
 
-@api_view(['GET', 'PUT', 'PATCH'])
+@api_view(['GET', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def forum_reply_by_comment_id(request, pk):
-    reply = get_object_or_404(Forum_Reply, pk=pk)
+    reply = get_object_or_404(Forum_Comment, pk=pk)
     if request.method == 'GET':
             forumreply = Forum_Reply.objects.filter(forumcomment_id = pk)
             serializer = ForumReplySerializer(forumreply, many= True)
             return Response(serializer.data, status = status.HTTP_200_OK)    
-    if request.method == "PUT":
-            serializer = ForumReplySerializer(reply, data=request.data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save(user = request.user)
-                return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PATCH':
             serializer = ForumReplySerializer(reply, data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def edit_reply_by_id(request, pk):
+    reply = get_object_or_404(Forum_Reply, pk=pk)   
+    if request.method == "PUT":
+            serializer = ForumReplySerializer(reply, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(user = request.user)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])

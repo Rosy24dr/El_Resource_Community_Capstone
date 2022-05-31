@@ -27,24 +27,31 @@ def create_comment(request):
                 return Response(serializer.data,status.HTTP_201_CREATED)
     
 
-@api_view(['GET', 'PUT', 'PATCH'])
+@api_view(['GET', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def forum_comment_by_id(request, pk):
-    forumpost = get_object_or_404(Forum_Comment,pk=pk)
+    forumpost = get_object_or_404(Forum_Post,pk=pk)
     if request.method == 'GET':
             forumcomment = Forum_Comment.objects.filter(forumpost_id = forumpost.id)
             serializer = ForumCommentSerializer(forumcomment, many= True)
             return Response(serializer.data, status = status.HTTP_200_OK)
-    elif request.method == "PUT":
-            serializer = ForumCommentSerializer(forumpost, data=request.data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save(user = request.user)
-                return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PATCH':
             serializer = ForumCommentSerializer(forumpost, data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save(user = request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def edit_comment_by_id(request, pk):
+    comment = get_object_or_404(Forum_Comment, pk=pk)  
+    if request.method == "PUT":
+            serializer = ForumCommentSerializer(comment,data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(user = request.user)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
