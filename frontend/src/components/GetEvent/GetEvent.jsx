@@ -11,7 +11,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
-import "./GetEvent.css"
+import "./GetEvent.css";
 
 const GetEvent = (props) => {
   const [user, token] = useAuth();
@@ -170,20 +170,24 @@ const GetEvent = (props) => {
   }
 
   return (
-    <div> <EventForm addEvent={addEvent} user={user} />  
-      <SearchBar  events={events} setEvents={setEvents} getEvents={getEvents} />
-      <Card><FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              left: "prev,next today",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay",
-            }}
-            aspectRatio={6}
-            height={400}
-            width={300}
-          /></Card>
+    <div>
+      {" "}
+      <EventForm addEvent={addEvent} user={user} />
+      <SearchBar events={events} setEvents={setEvents} getEvents={getEvents} />
+      <Card>
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          headerToolbar={{
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay",
+          }}
+          aspectRatio={6}
+          height={400}
+          width={300}
+        />
+      </Card>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleUpdate}>
           <input
@@ -221,35 +225,47 @@ const GetEvent = (props) => {
             value={zipCodeToUpdate}
             onChange={(event) => setZipCodeToUpdate(event.target.value)}
           />
-          {user.is_superuser ? <button>Edit Event</button> : null}
+          {user.is_superuser ? (
+            <button className="eventButtons">Edit Event</button>
+          ) : null}
         </form>
       </Popup>
-
-      {/* <ListGroup>
-        <ListGroup.Item> */}
-        {/* <Stack direction="horizontal" gap={3}> */}
-          {events.map((e) => {
-            return (
-              <div key={e.id} className="eventMapping">
-                <div>Title: {e.title}</div>
-                <div>Start Date: {e.start_date}</div>
-                <div>End Date: {e.end_date}</div>
-                <div>Description: {e.content}</div>
-                <div>Category: {e.category}</div>
-                <div>Address: {e.address}</div>
-                <div>Zip code: {e.zip_code}</div>
-                <button onClick={() => handleFavorite(e.id)} className="eventButtons">Favorite</button>
-                {user.is_superuser ? <button onClick={() => setEventToUpdate(e)} className="eventButtons">Edit Event</button> : null}
-                {user.is_superuser ? <button onClick={() => handleDelete(e.id)} className="eventButtons">Delete Event</button> : null}
-                <hr/>
-              </div>
-            );
-          })}
-        {/* </ListGroup.Item>
-      </ListGroup> */}
-   
-
-      
+      {events.map((e) => {
+        return (
+          <div key={e.id} className="eventMapping">
+            <div className="eventTitle">Title: {e.title}</div>
+            <div>Start Date: {e.start_date}</div>
+            <div>End Date: {e.end_date}</div>
+            <div>Description: {e.content}</div>
+            <div>Category: {e.category}</div>
+            <div>Address: {e.address}</div>
+            <div>Zip code: {e.zip_code}</div>
+            <button
+              onClick={() => handleFavorite(e.id)}
+              className="eventButtons"
+            >
+              Favorite
+            </button>
+            {user.is_superuser ? (
+              <button
+                onClick={() => setEventToUpdate(e)}
+                className="eventButtons"
+              >
+                Edit Event
+              </button>
+            ) : null}
+            {user.is_superuser ? (
+              <button
+                onClick={() => handleDelete(e.id)}
+                className="eventButtons"
+              >
+                Delete Event
+              </button>
+            ) : null}
+            <hr />
+          </div>
+        );
+      })}
       {favoriteEvent && (
         <FavoriteEvents
           favoriteEvent={favoriteEvent}

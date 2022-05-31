@@ -1,9 +1,15 @@
+import { Row, Container} from "react-bootstrap";
 import Forum from "../../components/Forum/Forum";
 
 
 const ForumPage =() => {
     return (
-        <Forum/>
+        <Container>
+            <Row>
+              <Forum/>  
+            </Row>
+        </Container>
+        
     )
 }
 

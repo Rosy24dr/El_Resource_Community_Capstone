@@ -5,6 +5,8 @@
     align-self: stretch;
     padding: 2%;
     margin: -1%;
+    font-size: 18px;
+    
 }
 
 .eventButtons{
@@ -16,3 +18,7 @@
 .eventButtons:hover{
 background-color:rgb(248, 245, 245);
     color: black;}
+
+.eventTitle{
+    font-weight: bold;
+}

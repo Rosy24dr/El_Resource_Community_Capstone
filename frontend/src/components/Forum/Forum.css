@@ -5,3 +5,14 @@
     margin: .5%;
   }
   
+
+  .forumMapping{
+    width: "300px";
+    margin: "30%";
+    background-color: "#44014C";
+    min-height: "200px";
+    box-sizing: "border-box";
+    border: 2px solid transparent;
+    box-shadow: 3px 3px rgb(231, 225, 225), -1em 0 .4em rgb(78, 78, 76);
+    display: flexbox;
+}

@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ForumPage from "./pages/ForumPage/ForumPgae";
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import MapPage from "./pages/MapPage/MapPage";
 import About from "./components/About/About";
 
 // Component Imports
@@ -37,9 +37,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/map" element={<MapPage />} />
       </Routes>
-      <Footer />ß
+      <Footer />
     </div>
   );
 }

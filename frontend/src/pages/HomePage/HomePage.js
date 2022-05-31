@@ -27,10 +27,13 @@ const HomePage = () => {
       <Container>
         <Row>
           <GetEvent />
+        </Row></Container>
+        <Container style={{ width: "50%", height: "300px", display:"flex", justifyContent:"center", paddingRight:"3%",  }}>
+          <Row><Map/>
         </Row>
-        <Row>
-        <Map/></Row>
         </Container>
+        
+        
       </div>
       <div>
        

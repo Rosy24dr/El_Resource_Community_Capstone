@@ -1,4 +1,3 @@
-import { Card } from "antd";
 import React, { useState } from "react";
 import Popup from "../Popup/Popup";
 import useAuth from "../../hooks/useAuth";
@@ -50,26 +49,31 @@ const EventForm = (props) => {
           <input
             type="text"
             value={title}
+            placeholder="ADD TITLE"
             onChange={(event) => setTitle(event.target.value)}
           />
           <input
             type="text"
             value={content}
+            placeholder="ADD DESCRIPTION"
             onChange={(event) => setContent(event.target.value)}
           />
           <input
             type="text"
             value={category}
+            placeholder="ADD CATEGORY"
             onChange={(event) => setCategories(event.target.value)}
           />
           <input
             type="text"
             value={address}
+            placeholder="ADD ADDRESS"
             onChange={(event) => setAddress(event.target.value)}
           />
           <input
             type="text"
             value={zipCode}
+            placeholder="ADD ZIP CODE"
             onChange={(event) => setZipCode(event.target.value)}
           />
           {user.is_superuser ? <button className="eventForm-btn">Add Event</button> : null}

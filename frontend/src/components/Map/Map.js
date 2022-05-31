@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import './Map.css'
+import "./Map.css";
 
 export class Mapcontainer extends Component {
   constructor(props) {
@@ -21,8 +21,8 @@ export class Mapcontainer extends Component {
         lng: -77.4105,
       },
       Style: {
-        maxWidth: "450px",
-        height: "350px",
+        maxWidth: "50%",
+        height: "50%",
         overflowX: "hidden",
         overflowY: "hidden",
       },
@@ -75,9 +75,9 @@ export class Mapcontainer extends Component {
             loading,
           }) => (
             <div>
-              <input placeholder="Search"
+              <input
+                placeholder="Search"
                 {...getInputProps({
-                 
                   className: "location-search-input",
                 })}
               />
@@ -108,7 +108,6 @@ export class Mapcontainer extends Component {
         </PlacesAutocomplete>
 
         <Map
-          
           google={this.props.google}
           onClick={this.onMapClicked}
           style={this.state.Style}
@@ -129,7 +128,6 @@ export class Mapcontainer extends Component {
             onClick={this.onMarkerClick}
             name={"Current location"}
             draggable={true}
-
           />
         </Map>
       </div>
@@ -140,39 +138,3 @@ export class Mapcontainer extends Component {
 export default GoogleApiWrapper({
   apiKey: KEY,
 })(Mapcontainer);
-
-// import React, { useRef, useEffect, useState } from "react";
-// import mapboxgl from "mapbox-gl";
-
-// mapboxgl.accessToken =
-//   "pk.eyJ1Ijoicm9zeTI0ZHIiLCJhIjoiY2wzbjNtbDI1MDljNjNlcGV5aW10Mmk4cyJ9.SPmx8TQ1IjGNA0Q5XK0vqw";
-
-// navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
-//   enableHighAccuracy: true,
-// });
-
-// function successLocation(position) {
-//   setupMap([position.coords.longitude, position.coords.latitude]);
-// }
-
-// function errorLocation() {
-//   setupMap([-2.24, 53.48]);
-// }
-
-// function setupMap(center) {
-//   const map = new mapboxgl.Map({
-//     container: "map",
-//     style: "mapbox://styles/mapbox/streets-v11",
-//     center: center,
-//     zoom: 15,
-//   });
-
-//   const nav = new mapboxgl.NavigationControl();
-//   map.addControl(nav);
-
-//   var directions = new MapboxDirections({
-//     accessToken: mapboxgl.accessToken,
-//   });
-
-//   map.addControl(directions, "top-left");
-// }

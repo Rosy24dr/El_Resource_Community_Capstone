@@ -1,12 +1,10 @@
-
 import React, { useState } from "react";
-import Popup from '../Popup/Popup'
+import Popup from "../Popup/Popup";
 
 const PostForm = (props) => {
   const [content, setContent] = useState(" ");
   const [date, setDate] = useState("");
-  const [buttonPopup, setButtonPopup] = useState(false)
-
+  const [buttonPopup, setButtonPopup] = useState(false);
 
   function handlesubmit(event) {
     event.preventDefault();
@@ -18,40 +16,39 @@ const PostForm = (props) => {
     };
     props.addReply(newReply);
     setContent(" ");
-
   }
 
   return (
     <div>
       <main>
-        <button onClick={() => setButtonPopup(true)} className="ReplyForm-btn">Add Reply</button>
-
+        <button onClick={() => setButtonPopup(true)} className="ReplyForm-btn">
+          Add Reply
+        </button>
       </main>
-    <Popup trigger={buttonPopup} setTrigger={setButtonPopup}> 
-      <form onSubmit={handlesubmit}>
-      <div>
-        <label for="content"></label>
-        <input
-          type="text"
-          value={content}
-          placeholder="Enter text"
-          onChange={(event) => setContent(event.target.value)}
-        />
-      </div>
-      <div>
-        <label for="Date">Date</label>
-        <input
-          type="Date"
-          value={date}
-          placeholder="Enter date"
-          onChange={(event) => setDate(event.target.value)}
-        />
-      </div>
-      <button className="ReplyForm-btn">Add Reply</button>
-    </form>
-    </Popup>
-   </div> 
-    
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <form onSubmit={handlesubmit}>
+          <div>
+            <label for="content"></label>
+            <input
+              type="text"
+              value={content}
+              placeholder="Enter text"
+              onChange={(event) => setContent(event.target.value)}
+            />
+          </div>
+          <div>
+            <label for="Date">Date</label>
+            <input
+              type="Date"
+              value={date}
+              placeholder="Enter date"
+              onChange={(event) => setDate(event.target.value)}
+            />
+          </div>
+          <button className="ReplyForm-btn">Add Reply</button>
+        </form>
+      </Popup>
+    </div>
   );
 };
 

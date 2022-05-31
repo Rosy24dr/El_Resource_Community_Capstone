@@ -3,7 +3,7 @@ import ReplyForm from "../ReplyForm/ReplyForm";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import Popup from "../Popup/Popup";
-import "./Reply.css"
+import "./Reply.css";
 
 const Reply = (props) => {
   const [user, token] = useAuth();
@@ -17,7 +17,6 @@ const Reply = (props) => {
     getReplies();
   }, []);
 
- 
   const getReplies = async () => {
     try {
       let result = await axios.get(
@@ -83,8 +82,7 @@ const Reply = (props) => {
     } catch (error) {
       console.log(error.message);
     }
-  };
-
+  }
 
   const setReplyToUpdate = (reply) => {
     setButtonPopup(true);
@@ -93,9 +91,7 @@ const Reply = (props) => {
     setDateToupdate(reply.date);
   };
 
-  
-
- function handleUpdate(event) {
+  function handleUpdate(event) {
     event.preventDefault();
     let reply = {
       user: props.user.id,
@@ -107,7 +103,6 @@ const Reply = (props) => {
     updateReply(reply);
   }
 
-
   function handleDelete(reply) {
     let response = prompt(
       "Are you sure you would like to delete this reply? "
@@ -117,7 +112,6 @@ const Reply = (props) => {
     }
   }
 
-  
   return (
     <div>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
@@ -149,8 +143,12 @@ const Reply = (props) => {
             <div>{r.user.username}</div>
             <div>{r.content}</div>
             <div>{r.date}</div>
-            <button onClick={() => setReplyToUpdate(r)} className="Reply-btn">Edit Reply</button>
-            <button onClick={() => handleDelete(r.id)} className="Reply-btn">Delete Reply</button>
+            <button onClick={() => setReplyToUpdate(r)} className="Reply-btn">
+              Edit Reply
+            </button>
+            <button onClick={() => handleDelete(r.id)} className="Reply-btn">
+              Delete Reply
+            </button>
           </div>
         );
       })}

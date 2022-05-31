@@ -147,7 +147,8 @@ const Forum = (props) => {
         </form>
       </Popup>
       {post.map((p) => (
-          <div key={p.id}>
+          <div key={p.id} className="forumMapping">
+            <div>{p.user.username}</div>
             <div>{p.topic}</div>
             <div>{p.description}</div>
             <div>{p.category}</div>

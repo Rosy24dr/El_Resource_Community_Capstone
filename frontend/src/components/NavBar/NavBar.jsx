@@ -2,15 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import "./NavBar.css";
-
 import Heart from "./Heart.png";
 import Popup from "../../components/Popup/Popup";
 import useCustomForm from "../../hooks/useCustomForm";
-import { FaBars } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
-import { Sidebar } from "./Sidebar";
 import { bubble as Menu } from "react-burger-menu";
-
 
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
@@ -60,6 +55,9 @@ const Navbar = () => {
             <a className="menu-item" href="/about">
               ABOUT US
             </a>
+            <a className="menu-item" href="/map">
+              MAP
+            </a>
           </Menu>
 
           <main>
@@ -77,9 +75,10 @@ const Navbar = () => {
             )}
             {isServerError ? (
               <p className="error">Login failed, incorrect credentials!</p>
-            ) : null} <Link className="navbarRegisterButton" to="/register">
-                  Register!
-                </Link>
+            ) : null}{" "}
+            <Link className="navbarRegisterButton" to="/register">
+              Register!
+            </Link>
           </main>
           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
             <li>
@@ -103,8 +102,12 @@ const Navbar = () => {
                   />
                 </label>
 
-                <button onClick={() => setButtonPopup(true)} className="loginPopUpButton">Login!</button>
-               
+                <button
+                  onClick={() => setButtonPopup(true)}
+                  className="loginPopUpButton"
+                >
+                  Login!
+                </button>
               </form>
             </li>
           </Popup>
