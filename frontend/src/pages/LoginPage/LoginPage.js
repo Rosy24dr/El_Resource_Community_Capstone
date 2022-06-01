@@ -7,7 +7,7 @@ const LoginPage = () => {
     <div>
       <header>
         <img src={Hands2} id="hands" />
-        <h1 className="quote"></h1>
+       
       </header>
     </div>
   );
