@@ -1,6 +1,12 @@
-.ReplyForm-btn{
+.replyForm-btn{
     background-color: black;
     color: white;
     padding: .5%;
     margin:.5%
 }
+
+.replyForm-btn:hover {
+    background-color: rgb(248, 245, 245);
+    color: black;
+  }
+  

@@ -5,6 +5,7 @@ import Comment from "../Comment/Comment";
 import PostForm from "../PostForm/PostForm";
 import Popup from "../Popup/Popup";
 import "./Forum.css"
+import { Accordion } from "react-bootstrap";
 
 const Forum = (props) => {
   const [user, token] = useAuth();
@@ -78,7 +79,7 @@ const Forum = (props) => {
 
   function handleDelete(post) {
     let response = prompt(
-      "Are you sure you would like to delete this reply? "
+      "Are you sure you would like to delete this post? "
     ).toLowerCase();
     if (response === "yes") {
       deletePost(post);
@@ -147,16 +148,21 @@ const Forum = (props) => {
         </form>
       </Popup>
       {post.map((p) => (
+        <Accordion defaultActiveKey="0">
+        <Accordion.Item eventKey="0">
           <div key={p.id} className="forumMapping">
-            <div>{p.user.username}</div>
-            <div>{p.topic}</div>
-            <div>{p.description}</div>
-            <div>{p.category}</div>
-            <div>{p.date}</div>
+          <Accordion.Header> <div>{p.user.username}</div>
+          <div>{p.topic}</div></Accordion.Header>
+           <Accordion.Body> <div>{p.date}</div> <div>{p.description}</div>
+            <div>Category: {p.category}</div>
+            
+           
             <button onClick={() => setPostToUpdate(p)} className="forum-btn">Edit Post</button>
-            <button onClick={() => handleDelete(p.id)} className="forum-btn">Delete Post</button>
-            <Comment user={user} forumpostId={p.id} />
-          </div>
+            <button onClick={() => handleDelete(p.id)} className="forum-btn">Delete Post</button> </Accordion.Body>
+            <hr/>
+            <Accordion.Body><Comment user={user} forumpostId={p.id} /></Accordion.Body>
+          </div> </Accordion.Item>
+          </Accordion>
         ))}
     
     </div>

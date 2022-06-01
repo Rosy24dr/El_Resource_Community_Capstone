@@ -1,8 +1,12 @@
-.PostForm-btn{
+.postForm-btn{
     background-color: black;
     color: white;
     padding: .5%;
     margin:.5%;
     margin-bottom:2%;
-    margin-top: 2%;
+    margin-top: 19%;
 }
+
+.postForm-btn:hover{
+    background-color:rgb(248, 245, 245);
+        color: black;}

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import CommentForm from "../CommentForm/CommentForm";
-import Reply from "../Reply/Reply"
+import Reply from "../Reply/Reply";
 import Popup from "../Popup/Popup";
-import './Comment.css'
+import "./Comment.css";
+import { Accordion } from "react-bootstrap";
 
 const Comment = (props) => {
   const [user, token] = useAuth();
@@ -18,11 +19,14 @@ const Comment = (props) => {
   }, []);
   const getComments = async () => {
     try {
-      let result = await axios.get(`http://127.0.0.1:8000/api/forumcomments/${props.forumpostId}/`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      let result = await axios.get(
+        `http://127.0.0.1:8000/api/forumcomments/${props.forumpostId}/`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
       setComments(result.data);
     } catch (error) {
       console.log(error.message);
@@ -61,7 +65,7 @@ const Comment = (props) => {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
   const updateComment = async (updatedComment) => {
     try {
       let result = await axios.put(
@@ -122,24 +126,52 @@ const Comment = (props) => {
         </form>
       </Popup>
       {comments.map((c) => {
-          return (
-            <div>
-              <div>{c.user.username}</div>
-              <div key={c.id}>{c.content}</div>
-              <div>{c.date}</div>
-              <button onClick={() => setCommentToUpdate(c)}className="comment-btn">Edit Comment</button>
-              <button onClick={() => handleDelete(c.id)} className="comment-btn">Delete Comment</button>
-              <Reply forumcommentId={c.id} comments={comments} user={props.user}/>
-            </div> 
-          );
-        }
-      )}
-      <CommentForm addComment= {addComment} user={user} forumpostId={props.forumpostId} />
+        return (
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <div style={{ fontWeight: "bold", fontSize: "20px" }}>Comment</div>
+              <div>
+                <Accordion.Header>
+                  {" "}
+                  <div>{c.user.username}</div>
+                </Accordion.Header>
+                <Accordion.Body>
+                  {" "}
+                  <div key={c.id}>{c.content}</div>
+                  <div>{c.date}</div>
+                  <button
+                    onClick={() => setCommentToUpdate(c)}
+                    className="comment-btn"
+                  >
+                    Edit Comment
+                  </button>
+                  <button
+                    onClick={() => handleDelete(c.id)}
+                    className="comment-btn"
+                  >
+                    Delete Comment
+                  </button>
+                </Accordion.Body>
+                <hr />
+                <Accordion.Body>
+                  {" "}
+                  <Reply
+                    forumcommentId={c.id}
+                    comments={comments}
+                    user={props.user}
+                  />
+                </Accordion.Body>
+              </div>{" "}
+            </Accordion.Item>
+          </Accordion>
+        );
+      })}
+      <CommentForm
+        addComment={addComment}
+        user={user}
+        forumpostId={props.forumpostId}
+      />
     </div>
-    
   );
 };
 export default Comment;
-
-
-

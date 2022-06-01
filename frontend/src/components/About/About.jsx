@@ -1,4 +1,3 @@
-import "./About.css";
 import { Link } from "react-router-dom";
 import { Accordion, Carousel } from "react-bootstrap";
 import aboutUs from "./aboutUs.jpg";

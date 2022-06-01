@@ -13,13 +13,15 @@ li {
 .navBar {
   margin-bottom: 0rem;
   padding: 1.5rem 2rem;
-  background-color: transparent;
+  background-color: rgb(210, 201, 201);
   text-decoration: none;
   position: sticky;
   top: 0;
   z-index: 100;
   padding-bottom: 0rem;
-  position: relative;
+  overflow: hidden;
+  border: transparent;
+  opacity: 0.9;
   
 }
 
@@ -36,16 +38,18 @@ li {
 
 .image {
   max-width: 25%;
-  margin: -14%;
+  margin: -13%;
+  margin-top: -10%;
 }
 
 .title {
   padding-left: 14%;
   margin: -9%;
   font-size: 41px;
-  padding-left: 16%;
+  padding-left: 14%;
   color: black;
   font-family: 'Indie Flower', cursive;
+  margin-top: -5%;
 }
 
 #App {
@@ -75,7 +79,7 @@ li {
   width: 36px;
   height: 30px;
 
-  top: 18px;
+  top: 35px;
   margin-left: 600px;
   margin-top: 20px;
 }
@@ -111,9 +115,9 @@ li {
   background: rgba(0, 0, 0, 0.3);
 }
 
-.navbar.transparent.navbar-inverse .navbar-inner {
+/* .navbar.transparent.navbar-inverse .navbar-inner {
   background: rgba(0, 0, 0, 0.4);
-}
+} */
 
 .navbarLoginButton {
   background-color: transparent;
@@ -123,12 +127,13 @@ li {
   font-size: 25px;
   margin-left: -200%;
   padding: 29%;
-  margin-top: -21%;
+  margin-top: -13%;
   opacity: 2.4;
   transition: 0.3s;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  margin-bottom: -23%;
   
 }
 
@@ -151,13 +156,15 @@ li {
   color: black;
   text-align: center;
   font-size: 25px;
-  margin-left: -200%;
-  padding: 4%;
+  margin-left: -203%;
+  padding: 27%;
   opacity: 2.4;
   transition: 0.3s;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  margin-top: -8%;
+  margin-bottom: -25%;
 }
 
 .navbarLogOutButton:hover {
@@ -167,7 +174,7 @@ li {
 .navbarLogOutButton::after {
   content: "/";
   position: absolute;
-  right: px;
+  right: 404px;
   line-height: px;
   color: #333;
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import Popup from "../Popup/Popup";
 import "./Reply.css";
+import { Accordion } from "react-bootstrap";
 
 const Reply = (props) => {
   const [user, token] = useAuth();
@@ -134,22 +135,40 @@ const Reply = (props) => {
               onChange={(event) => setDateToupdate(event.target.value)}
             />
           </div>
-          <button className="Reply-btn">Edit Reply</button>
+          <button className="reply-btn">Edit Reply</button>
         </form>
       </Popup>
       {replies.map((r) => {
         return (
-          <div key={r.id}>
-            <div>{r.user.username}</div>
-            <div>{r.content}</div>
-            <div>{r.date}</div>
-            <button onClick={() => setReplyToUpdate(r)} className="Reply-btn">
-              Edit Reply
-            </button>
-            <button onClick={() => handleDelete(r.id)} className="Reply-btn">
-              Delete Reply
-            </button>
-          </div>
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <div style={{ fontWeight: "bold", fontSize: "20px" }}>Reply</div>
+              <div key={r.id}>
+                <Accordion.Header>
+                  {" "}
+                  <div>{r.user.username}</div>{" "}
+                </Accordion.Header>
+                <Accordion.Body>
+                  {" "}
+                  <div>{r.content}</div>
+                  <div>{r.date}</div>
+                  <hr />
+                  <button
+                    onClick={() => setReplyToUpdate(r)}
+                    className="reply-btn"
+                  >
+                    Edit Reply
+                  </button>
+                  <button
+                    onClick={() => handleDelete(r.id)}
+                    className="reply-btn"
+                  >
+                    Delete Reply
+                  </button>
+                </Accordion.Body>
+              </div>
+            </Accordion.Item>
+          </Accordion>
         );
       })}
 

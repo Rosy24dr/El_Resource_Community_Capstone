@@ -81,7 +81,7 @@ export class Mapcontainer extends Component {
                   className: "location-search-input",
                 })}
               />
-              <div className="autocomplete-dropdown-container">
+              <div>
                 {loading && <div>Loading...</div>}
                 {suggestions.map((suggestion) => {
                   const className = suggestion.active

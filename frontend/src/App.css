@@ -1,4 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap"); */
+
 
 *,
 *::before,
@@ -6,39 +6,7 @@
   margin: 0;
   padding: 0;
 }
-/* 
-html {
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  all: initial;
-}
 
-p {
-  font-size: 20px;
-} */
-
-/* button { */
-/* background-color: red; */
-/* border: 2px solid steelblue; */
-/* color: steelblue;
-  font-size: 1rem;
-  font-family: inherit;
-  max-width: 100px;
-  padding: 0.5rem 0.5rem;
-} */
-
-/* button:hover {
-  cursor: pointer;
-  /* color: rgb(248, 4, 4);
-  background-color: rgb(226, 12, 12); */
-/* } */
-/* 
-.container {
-  margin: 0 auto;
-  max-width: 600px;
-  overflow: auto;
-  text-align: center;
-} */
 
 .form {
   align-items: center;

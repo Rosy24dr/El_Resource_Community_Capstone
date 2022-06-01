@@ -58,7 +58,7 @@ const FavoriteEvents = (props) => {
                     <div>Zip code: {f.event.zip_code}</div>
                     <button
                       onClick={() => handleDelete(f.id)}
-                      classNamefavoriteEvent-btn
+                      className="favoriteEvent-btn"
                     >
                       Delete Event
                     </button>

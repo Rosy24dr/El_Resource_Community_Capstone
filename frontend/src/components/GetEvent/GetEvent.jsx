@@ -174,7 +174,7 @@ const GetEvent = (props) => {
       {" "}
       <EventForm addEvent={addEvent} user={user} />
       <SearchBar events={events} setEvents={setEvents} getEvents={getEvents} />
-      <Card>
+      <Card style={{ position:"relative"}}>
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"

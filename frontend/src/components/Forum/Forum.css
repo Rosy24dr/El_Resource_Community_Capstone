@@ -4,6 +4,10 @@
     padding: .5%;
     margin: .5%;
   }
+
+  .forum-btn:hover{
+    background-color:rgb(248, 245, 245);
+        color: black;}
   
 
   .forumMapping{
