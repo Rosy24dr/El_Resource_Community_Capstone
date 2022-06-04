@@ -186,6 +186,7 @@ const GetEvent = (props) => {
           aspectRatio={6}
           height={400}
           width={300}
+          position={"relative"}
         />
       </Card>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>

@@ -1,10 +1,11 @@
 .welcome{
     font-size: 24px;
     margin-top: 6%;
+    margin-left: -82%;
     font-weight: revert;
     
 }
 
-.container{
+/* .container{
     background-color: black;
-}
+} */

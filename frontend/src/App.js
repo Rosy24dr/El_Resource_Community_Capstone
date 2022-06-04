@@ -19,9 +19,9 @@ import PrivateRoute from "./utils/PrivateRoute";
 function App() {
   return (
     <div>
-      <div>
-      <Navbar id="App" />
-      </div>
+ 
+      <Navbar/>
+
       <Routes>
         <Route
           path="/"
@@ -31,11 +31,10 @@ function App() {
             </PrivateRoute>
           }
         />{" "}
-        
-        <Route path="/forum" element={<ForumPage />} />
-        <Route path="/about" element={<About />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/forum" element={<ForumPage />} />
+        <Route path="/about" element={<About />} />
         <Route path="/map" element={<MapPage />} />
       </Routes>
     </div>
