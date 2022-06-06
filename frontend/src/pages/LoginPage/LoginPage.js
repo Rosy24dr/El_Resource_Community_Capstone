@@ -20,18 +20,6 @@ const LoginPage = () => {
         <Carousel.Item>
           <img className="d-block w-100" src={Hands3} alt="First slide" />
         </Carousel.Item>
-        {/* <Carousel.Item>
-          <img className="d-block w-100" src={People2} alt="Second slide" />
-        </Carousel.Item> */}
-        {/* <Carousel.Item>
-          <img className="d-block w-100" src={RedHeart} alt="Third slide" />
-        </Carousel.Item> */}
-        {/* <Carousel.Item>
-          <img className="d-block w-100" src={Hope} alt="Third slide" />
-        </Carousel.Item> */}
-        {/* <Carousel.Item>
-          <img className="d-block w-100" src={Rise} alt="Third slide" />
-        </Carousel.Item> */}
         <Carousel.Item>
           <img className="d-block w-100" src={HeartHands} alt="Third slide" />
         </Carousel.Item>

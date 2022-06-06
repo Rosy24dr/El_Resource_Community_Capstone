@@ -1,9 +1,4 @@
-/* *,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-} */
+
 
 h1 {
   text-align: center;
@@ -13,22 +8,3 @@ h1 {
   color: red;
 }
 
-/* .container{
-  background: lightblue url("./Hands2.png") no-repeat fixed center;
-  
-} */
-
-.loginBackground {
-  min-height: 100%;
-  /* background-image: url("../../Assets/faran-raufi-aZtJqc4FE5s-unsplash.jpg"); */
-  /* background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  opacity: 0.6; */
-}
-
-
-/* .login_display{
-  display: flex;
-  justify-content: center;
-} */

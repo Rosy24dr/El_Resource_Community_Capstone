@@ -45,9 +45,9 @@ const FavoriteEvents = (props) => {
       <ul>
         {props.favoriteEvent.map((f) => {
           return (
-            <Card style={{ width: "50%", overflow: "scroll", height: "300px" }}>
+            <Card style={{ width: "50%", overflow: "scroll", height: "300px", margin:"1%" }}>
               <div>
-                <Card.Body>
+                <Card.Body className="favoriteEvents">
                   <li key={f.id}>
                     <div> Start Date: {f.event.start_date}</div>
                     <div>End Date: {f.event.end_date}</div>

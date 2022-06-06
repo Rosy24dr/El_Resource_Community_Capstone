@@ -1,7 +1,6 @@
-
-.forumPageBackground{
+.mapPageBackground{
     background-image: linear-gradient(rgb(225,240,232,94), white );
     padding-bottom: 100%;
-    padding-top: 0%;
+    padding-top: 6%;
     margin-top: -7%;
 }

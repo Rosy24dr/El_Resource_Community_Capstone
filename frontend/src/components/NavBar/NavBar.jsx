@@ -42,9 +42,16 @@ const Navbar = () => {
         <Menu>
           <li>
             {user ? (
-              <button onClick={logoutUser}>Logout</button>
+              <button onClick={logoutUser} className="navbarButton">
+                Logout
+              </button>
             ) : (
-              <button onClick={() => setButtonPopup(true)} >Login</button>
+              <button
+                onClick={() => setButtonPopup(true)}
+                className="navbarButton"
+              >
+                Login
+              </button>
             )}
           </li>
           <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
@@ -70,25 +77,26 @@ const Navbar = () => {
               {isServerError ? (
                 <p className="error">Login failed, incorrect credentials!</p>
               ) : null}
+
+              <button className="navbarButton">Login!</button>
               <Link to="/register">Click to register!</Link>
-              <button>Login!</button>
             </form>
           </Popup>
-          <a className="menu-item" href="/login">
+          {/* <a className="menu-item" href="/login">
             HOME
+          </a> */}
+          <a className="menu-item" href="/">
+            DASHBOARD
           </a>
           <a className="menu-item" href="/forum">
             FORUM
-          </a>
-          <a className="menu-item" href="/">
-            DASHBOARD
+          </a><a className="menu-item" href="/map">
+            MAP
           </a>
           <a className="menu-item" href="/about">
             ABOUT US
           </a>
-          <a className="menu-item" href="/map">
-            MAP
-          </a>
+          
         </Menu>
       </ul>
     </div>

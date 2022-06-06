@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import CommentForm from "../CommentForm/CommentForm";
@@ -14,6 +14,7 @@ const Comment = (props) => {
   const [dateToUpdate, setDateToupdate] = useState("");
   const [idToUpdate, setIdToupdate] = useState();
   const [buttonPopup, setButtonPopup] = useState(false);
+  
   useEffect(() => {
     getComments();
   }, []);

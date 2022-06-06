@@ -36,11 +36,13 @@ const EventForm = (props) => {
       </main>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleSubmit}>
+          <label>Start Date</label>
           <input
             type="date"
             value={startDate}
             onChange={(event) => setStartDate(event.target.value)}
           />
+          <label>End Date</label>
           <input
             type="date"
             value={endDate}

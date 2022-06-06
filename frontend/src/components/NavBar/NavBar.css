@@ -13,7 +13,7 @@ li {
 .navBar {
   margin-bottom: 0rem;
   padding: 1.5rem 3rem;
-  background-color: rgb(210, 201, 201);
+  background-color: rgb(195, 214, 210, 93);
   text-decoration: none;
   position: sticky;
   top: 0;
@@ -120,25 +120,13 @@ li {
   background: rgba(0, 0, 0, 0.4);
 } */
 
-.navbarLoginButton {
+.navbarButton {
   background-color: transparent;
   border: none;
-  color: black;
-  text-align: center;
-  font-size: 25px;
-  margin-left: -200%;
-  padding: 29%;
-  margin-top: -13%;
-  opacity: 2.4;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-  margin-bottom: -23%;
   
 }
 
-.navbarLoginButton:hover {
+.navbarButton:hover {
   opacity: 0.3;
 }
 

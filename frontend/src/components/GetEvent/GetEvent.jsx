@@ -11,6 +11,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import Calendar from "../Calendar/Calendar" 
 import "./GetEvent.css";
 
 const GetEvent = (props) => {
@@ -174,7 +175,8 @@ const GetEvent = (props) => {
       {" "}
       <EventForm addEvent={addEvent} user={user} />
       <SearchBar events={events} setEvents={setEvents} getEvents={getEvents} />
-      <Card style={{ position:"relative"}}>
+      <Calendar/>
+      {/* <Card style={{ position:"relative"}}>
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
@@ -188,7 +190,7 @@ const GetEvent = (props) => {
           width={300}
           position={"relative"}
         />
-      </Card>
+      </Card> */}
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleUpdate}>
           <input
