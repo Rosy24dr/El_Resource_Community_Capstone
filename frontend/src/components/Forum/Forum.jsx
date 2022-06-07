@@ -32,11 +32,14 @@ const Forum = (props) => {
 
   const addPost = async (newPost) => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/forumpost/create/", newPost, {
+      let response = await axios.post("http://127.0.0.1:8000/api/forumpost/create/", newPost, {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
+      if (response.status === 201) {
+        alert("Post was added successfully!")
+      }
       getPosts();
     } catch (error) {
       console.log(newPost);
@@ -62,7 +65,7 @@ const Forum = (props) => {
 
   const updatePost = async (updatedPost) => {
     try {
-      let result = await axios.put(
+      let response = await axios.put(
         `http://127.0.0.1:8000/api/forumpost/${idToUpdate}/`,
         updatedPost,
         {
@@ -71,6 +74,9 @@ const Forum = (props) => {
           },
         }
       );
+      if (response.status === 200) {
+        alert("Post was updated successfully!")
+      }
       getPosts();
     } catch (error) {
       console.log(error.message);

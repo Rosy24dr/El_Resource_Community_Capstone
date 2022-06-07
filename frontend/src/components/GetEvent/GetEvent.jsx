@@ -63,7 +63,7 @@ const GetEvent = (props) => {
 
   const updateEvent = async (updatedEvent) => {
     try {
-      let result = await axios.put(
+      let response = await axios.put(
         `http://127.0.0.1:8000/api/event/${idToUpdate}/`,
         updatedEvent,
         {
@@ -71,7 +71,9 @@ const GetEvent = (props) => {
             Authorization: "Bearer " + token,
           },
         }
-      );
+      );if (response.status === 201) {
+        alert("Event was added successfully!")
+      }
       getEvents();
     } catch (error) {
       console.log(error.message);
@@ -149,7 +151,7 @@ const GetEvent = (props) => {
 
   const addFavoriteEvent = async (newFavoriteEvent_id) => {
     try {
-      await axios.post(
+      let response = await axios.post(
         "http://127.0.0.1:8000/api/favoriteevents/create/" +
           newFavoriteEvent_id +
           "/",
@@ -160,6 +162,9 @@ const GetEvent = (props) => {
           },
         }
       );
+      if (response.status === 200) {
+        alert("Favorite event was added successfully!")
+      }
       getFavoriteEvents();
     } catch (error) {
       console.log(error.response.data);

@@ -36,7 +36,7 @@ const Comment = (props) => {
 
   const addComment = async (newComment) => {
     try {
-      await axios.post(
+      let response = await axios.post(
         "http://127.0.0.1:8000/api/forumcomments/create/",
         newComment,
         {
@@ -45,6 +45,9 @@ const Comment = (props) => {
           },
         }
       );
+      if (response.status === 201) {
+        alert("Comment was added successfully!")
+      }
       getComments();
     } catch (error) {
       console.log(newComment);
@@ -69,7 +72,7 @@ const Comment = (props) => {
   }
   const updateComment = async (updatedComment) => {
     try {
-      let result = await axios.put(
+      let response = await axios.put(
         `http://127.0.0.1:8000/api/forumcomments/edit/${idToUpdate}/`,
         updatedComment,
         {
@@ -78,6 +81,9 @@ const Comment = (props) => {
           },
         }
       );
+      if (response.status === 200) {
+        alert("Comment was updated successfully!")
+      }
       getComments();
     } catch (error) {
       console.log(error.message);
