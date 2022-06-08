@@ -40,12 +40,10 @@ const FavoriteEvents = (props) => {
 
   return (
     <div>
-      <div className="FavoriteEventTitle">Favorite Events:</div>
-
       <ul>
         {props.favoriteEvent.map((f) => {
           return (
-            <Card style={{ width: "50%", overflow: "scroll", height: "300px", margin:"1%" }}>
+            <Card style={{ width: "50%", overflow: "scroll", height: "300px", margin:"1%", marginTop:"-1%"}}>
               <div>
                 <Card.Body className="favoriteEvents">
                   <li key={f.id}>

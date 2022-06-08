@@ -36,7 +36,7 @@ const Reply = (props) => {
 
   const addReply = async (newReply) => {
     try {
-      await axios.post(
+      let response = await axios.post(
         "http://127.0.0.1:8000/api/forumreply/create/",
         newReply,
         {
@@ -45,6 +45,9 @@ const Reply = (props) => {
           },
         }
       );
+      if (response.status === 201) {
+        alert("Reply was added successfully!")
+      }
       getReplies();
     } catch (error) {
       console.log(newReply);
@@ -54,7 +57,7 @@ const Reply = (props) => {
 
   const updateReply = async (updatedReply) => {
     try {
-      let result = await axios.put(
+      let response = await axios.put(
         `http://127.0.0.1:8000/api/forumreply/edit/${idToUpdate}/`,
         updatedReply,
         {
@@ -63,6 +66,9 @@ const Reply = (props) => {
           },
         }
       );
+      if (response.status === 200) {
+        alert("Reply was updated successfully!")
+      }
       getReplies();
     } catch (error) {
       console.log(error.message);

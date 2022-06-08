@@ -77,7 +77,7 @@ const events = [
     return (
         <div>
             <div>
-            <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 450, margin: "50px" , width: "70%", marginLeft: "11%"}} />
+            <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 450, margin: "50px" , width: "70%", marginLeft: "15%", marginTop:"2%"}} />
         </div>
 
         </div>

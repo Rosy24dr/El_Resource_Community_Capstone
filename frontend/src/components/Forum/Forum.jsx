@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import Comment from "../Comment/Comment";
 import PostForm from "../PostForm/PostForm";
 import Popup from "../Popup/Popup";
-import "./Forum.css"
+import "./Forum.css";
 import { Accordion } from "react-bootstrap";
 
 const Forum = (props) => {
@@ -32,13 +32,17 @@ const Forum = (props) => {
 
   const addPost = async (newPost) => {
     try {
-      let response = await axios.post("http://127.0.0.1:8000/api/forumpost/create/", newPost, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      let response = await axios.post(
+        "http://127.0.0.1:8000/api/forumpost/create/",
+        newPost,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
       if (response.status === 201) {
-        alert("Post was added successfully!")
+        alert("Post was added successfully!");
       }
       getPosts();
     } catch (error) {
@@ -61,7 +65,7 @@ const Forum = (props) => {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
 
   const updatePost = async (updatedPost) => {
     try {
@@ -75,7 +79,7 @@ const Forum = (props) => {
         }
       );
       if (response.status === 200) {
-        alert("Post was updated successfully!")
+        alert("Post was updated successfully!");
       }
       getPosts();
     } catch (error) {
@@ -92,7 +96,6 @@ const Forum = (props) => {
     }
   }
 
-
   const setPostToUpdate = (post) => {
     setButtonPopup(true);
     setIdToUpdate(post.id);
@@ -102,11 +105,7 @@ const Forum = (props) => {
     setCategoryToUpdate(post.category);
   };
 
-
-  
-  
-
- function handleUpdate(event) {
+  function handleUpdate(event) {
     event.preventDefault();
     let post = {
       user: user.id,
@@ -120,7 +119,7 @@ const Forum = (props) => {
   }
 
   return (
-    <div>  
+    <div>
       <PostForm addpost={addPost} user={user} />
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleUpdate}>
@@ -155,22 +154,38 @@ const Forum = (props) => {
       </Popup>
       {post.map((p) => (
         <Accordion defaultActiveKey="0">
-        <Accordion.Item eventKey="0">
-          <div key={p.id} className="forumMapping">
-          <Accordion.Header> <div>{p.user.username}</div>
-          <div>{p.topic}</div></Accordion.Header>
-           <Accordion.Body> <div>{p.date}</div> <div>{p.description}</div>
-            <div>Category: {p.category}</div>
-            
-           
-            <button onClick={() => setPostToUpdate(p)} className="forum-btn">Edit Post</button>
-            <button onClick={() => handleDelete(p.id)} className="forum-btn">Delete Post</button> </Accordion.Body>
-            <hr/>
-            <Accordion.Body><Comment user={user} forumpostId={p.id} /></Accordion.Body>
-          </div> </Accordion.Item>
-          </Accordion>
-        ))}
-    
+          <Accordion.Item eventKey="0">
+            <div key={p.id} className="forumMapping">
+              <Accordion.Header>
+                {" "}
+                <div>{p.user.username}</div>
+                <div>{p.topic}</div>
+              </Accordion.Header>
+              <Accordion.Body>
+                {" "}
+                <div>{p.date}</div> <div>{p.description}</div>
+                <div>Category: {p.category}</div>
+                <button
+                  onClick={() => setPostToUpdate(p)}
+                  className="forum-btn"
+                >
+                  Edit Post
+                </button>
+                <button
+                  onClick={() => handleDelete(p.id)}
+                  className="forum-btn"
+                >
+                  Delete Post
+                </button>{" "}
+              </Accordion.Body>
+              <hr />
+              <Accordion.Body>
+                <Comment user={user} forumpostId={p.id} />
+              </Accordion.Body>
+            </div>{" "}
+          </Accordion.Item>
+        </Accordion>
+      ))}
     </div>
   );
 };

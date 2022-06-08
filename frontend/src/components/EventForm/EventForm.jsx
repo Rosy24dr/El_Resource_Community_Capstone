@@ -32,7 +32,7 @@ const EventForm = (props) => {
   return (
     <div>
       <main>
-      {user.is_superuser ? <button onClick={() => setButtonPopup(true) } className="eventForm-btn">Add Event</button> : null}
+      {user.is_superuser ? <button onClick={() => setButtonPopup(true) } className="eventForm-btn">Add Resource Program</button> : null}
       </main>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleSubmit}>
@@ -78,7 +78,7 @@ const EventForm = (props) => {
             placeholder="ADD ZIP CODE"
             onChange={(event) => setZipCode(event.target.value)}
           />
-          {user.is_superuser ? <button className="eventForm-btn">Add Event</button> : null}
+          {user.is_superuser ? <button className="eventForm-btn">Add</button> : null}
         </form>
       </Popup>
     </div>

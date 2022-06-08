@@ -11,7 +11,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
-import Calendar from "../Calendar/Calendar" 
+import Calendar from "../Calendar/Calendar";
 import "./GetEvent.css";
 
 const GetEvent = (props) => {
@@ -49,11 +49,18 @@ const GetEvent = (props) => {
 
   const addEvent = async (newEvent) => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/event/create/", newEvent, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      let response = await axios.post(
+        "http://127.0.0.1:8000/api/event/create/",
+        newEvent,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (response.status === 201) {
+        alert("Resource was added successfully!");
+      }
       getEvents();
     } catch (error) {
       console.log(newEvent);
@@ -71,8 +78,9 @@ const GetEvent = (props) => {
             Authorization: "Bearer " + token,
           },
         }
-      );if (response.status === 201) {
-        alert("Event was added successfully!")
+      );
+      if (response.status === 200) {
+        alert("Resource was updated successfully!");
       }
       getEvents();
     } catch (error) {
@@ -163,7 +171,7 @@ const GetEvent = (props) => {
         }
       );
       if (response.status === 200) {
-        alert("Favorite event was added successfully!")
+        alert("Favorite event was added successfully!");
       }
       getFavoriteEvents();
     } catch (error) {
@@ -178,9 +186,15 @@ const GetEvent = (props) => {
   return (
     <div>
       {" "}
+      {favoriteEvent && (
+        <FavoriteEvents
+          favoriteEvent={favoriteEvent}
+          getFavoriteEvents={getFavoriteEvents}
+        />
+      )} <Calendar/>
       <EventForm addEvent={addEvent} user={user} />
       <SearchBar events={events} setEvents={setEvents} getEvents={getEvents} />
-      <Calendar/>
+     
       {/* <Card style={{ position:"relative"}}>
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -274,12 +288,6 @@ const GetEvent = (props) => {
           </div>
         );
       })}
-      {favoriteEvent && (
-        <FavoriteEvents
-          favoriteEvent={favoriteEvent}
-          getFavoriteEvents={getFavoriteEvents}
-        />
-      )}
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { Container, Row } from "react-bootstrap";
 
 import GetEvent from "../../components/GetEvent/GetEvent";
 import Map from "../../components/Map/Map";
+import Calendar from "../../components/Calendar/Calendar"
 
 const HomePage = () => {
   const [user, token] = useAuth();
@@ -17,8 +18,10 @@ const HomePage = () => {
         <div className="container">
           <div id="homePage">
             <h1 className="welcome">Welcome {user.username}!</h1>
+            <p className="favoriteEventsTitle">Favorite Events:</p>
+           
             <Container
-              style={{ width: "100%", height: "100%", paddingBottom: "80%" }}
+              style={{ width: "100%", height: "100%", paddingBottom: "80%", marginTop:"3%" }}
             >
               <Row>
                 <GetEvent />
@@ -33,7 +36,7 @@ const HomePage = () => {
                   marginTop: "3%",
                 }}
               >
-                <Map />
+                {/* <Map /> */}
               </Row>
             </Container>
           </div>
